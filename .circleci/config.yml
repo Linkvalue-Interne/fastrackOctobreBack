@@ -1,0 +1,153 @@
+version: 2
+jobs:
+  build:
+    working_directory: /var/www/html
+    docker:
+      - image: composer
+    steps:
+      - checkout
+      - run:
+          name: Activate PHP Extensions
+          command: |
+            docker-php-ext-install pdo pdo_mysql
+      - run:
+          name: Update composer
+          command: composer self-update
+      - restore_cache:
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+            - composer-v1-
+      - run:
+          name: Install vendors
+          command: composer install --prefer-dist --no-scripts --no-interaction
+      - save_cache:
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+      - run: chown -R 82:82 /var/www/html
+      - persist_to_workspace:
+          root: /var/www/html/
+          paths:
+            - ./*
+  lint:
+    working_directory: /var/www/html
+    docker:
+      - image: php:7.3-cli-alpine
+    steps:
+      - attach_workspace:
+          at: /var/www/html
+      - run:
+          name: Code Style
+          command: |
+            touch ./app
+            mkdir ./resources
+            touch ./resources/lang
+            vendor/bin/phpcs --config-set ignore_warnings_on_exit 1
+            vendor/bin/phpcs
+  test:
+    machine: true
+    working_directory: ~/fastrackOctobreBack
+    steps:
+      - checkout
+      - run:
+          name: Setup environment
+          command: |
+            sudo sysctl -w vm.max_map_count=262144
+            mv .env.bak .env
+            echo 'APP_ENV=test' >> .env
+            echo 'DATABASE_URL_TEST=mysql://root:root@fastrackOctobreBack_sql:3306/fastrackOctobreBack_test' >> .env
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: Start environment
+          command: make start
+      - run:
+          name: Install vendors
+          command: make update-vendor
+      - run:
+          name: Setup database
+          command: |
+            docker exec -it fastrackOctobreBack_php sh -c 'APP_ENV=test php bin/console doctrine:database:create'
+            docker exec -it fastrackOctobreBack_php sh -c 'APP_ENV=test php bin/console doctrine:migrations:migrate --no-interaction' --no-interactions
+      - run:
+          name: Launch tests
+          command: make test
+  deploy-staging: &deploy-job
+    docker:
+      - image: circleci/node:dubnium
+        user: root
+    working_directory: ~/app
+    environment:
+      HEROKU_APP: fastrack-octobre-back
+    steps:
+      - checkout
+      - run:
+          name: Install dpl
+          command: |
+            apt update
+            apt install ruby
+            gem install -N dpl
+      - run:
+          name: Install heroku cli
+          command: npm install -g heroku
+      - run:
+          name: Copy default env file to .env
+          command: cp .env.dist .env
+      - deploy:
+          name: Deploy to Heroku
+          command: dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY --skip-cleanup=true
+      - deploy:
+          name: Run migrations
+          command: heroku run --exit-code bin/console doctrine:migrations:migrate -n --allow-no-migration
+  deploy-preprod:
+    <<: *deploy-job
+    environment:
+      HEROKU_APP: my-app-preprod
+  deploy-prod:
+    <<: *deploy-job
+    environment:
+      HEROKU_APP: my-app-prod
+filter-staging: &filter-staging
+  filters:
+    branches:
+      only: master
+filter-preprod-prod: &filter-preprod-prod
+  filters:
+    branches:
+      ignore: /.*/
+    tags:
+      only: /\d+\.\d+\.\d+/
+workflows:
+  version: 2
+  test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - lint:
+          requires:
+            - build
+  deploy-staging:
+    jobs:
+      - deploy-staging:
+          <<: *filter-staging
+  deploy:
+    jobs:
+      - hold_preprod:
+          <<: *filter-preprod-prod
+          type: approval
+      - deploy-preprod:
+          <<: *filter-preprod-prod
+          requires:
+            - hold_preprod
+      - hold_prod:
+          <<: *filter-preprod-prod
+          type: approval
+          requires:
+            - deploy-preprod
+      - deploy-prod:
+          <<: *filter-preprod-prod
+          requires:
+            - hold_prod
