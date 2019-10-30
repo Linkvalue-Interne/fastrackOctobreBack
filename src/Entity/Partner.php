@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Entity;
 
 
@@ -16,7 +15,7 @@ class Partner
     private $lastname;
 
     /** @var string */
-    private $profession;
+    private $job;
 
     /** @var string */
     private $email;
@@ -76,18 +75,18 @@ class Partner
     /**
      * @return string|null
      */
-    public function getProfession(): ?string
+    public function getJob(): ?string
     {
-        return $this->profession;
+        return $this->job;
     }
 
     /**
-     * @param string $profession
+     * @param string $job
      * @return Partner
      */
-    public function setProfession(string $profession): Partner
+    public function setJob(string $job): Partner
     {
-        $this->profession = $profession;
+        $this->job = $job;
 
         return $this;
     }
