@@ -23,7 +23,7 @@ class Partner
     /** @var string */
     private $phone_number;
 
-    /** @var string */
+    /** @var int */
     private $experience;
 
     /**
@@ -130,18 +130,18 @@ class Partner
     }
 
     /**
-     * @return string|null
+     * @return int|null
      */
-    public function getExperience(): ?string
+    public function getExperience(): ?int
     {
         return $this->experience;
     }
 
     /**
-     * @param string $experience
+     * @param int $experience
      * @return Partner
      */
-    public function setExperience(string $experience): Partner
+    public function setExperience(int $experience): Partner
     {
         $this->experience = $experience;
 
