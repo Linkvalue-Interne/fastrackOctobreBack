@@ -3350,6 +3350,7 @@
             "time": "2018-04-25T15:33:34+00:00"
         }
     ],
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     "packages-dev": [],
 =======
@@ -4023,6 +4024,10 @@
             "time": "2019-09-17T11:12:06+00:00"
         },
         {
+=======
+    "packages-dev": [
+        {
+>>>>>>> feat/add test Partner
             "name": "symfony/phpunit-bridge",
             "version": "v4.3.5",
             "source": {
@@ -4088,6 +4093,7 @@
             "time": "2019-10-02T08:36:26+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/property-access",
             "version": "v4.3.6",
             "source": {
@@ -4155,6 +4161,8 @@
             "time": "2019-08-26T08:26:39+00:00"
         },
         {
+=======
+>>>>>>> feat/add test Partner
             "name": "symfony/var-dumper",
             "version": "v4.3.5",
             "source": {
@@ -4229,6 +4237,7 @@
                 "dump"
             ],
             "time": "2019-10-04T19:48:13+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "theofidry/alice-data-fixtures",
@@ -4311,6 +4320,10 @@
         }
     ],
 >>>>>>> Stashed changes
+=======
+        }
+    ],
+>>>>>>> feat/add test Partner
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
