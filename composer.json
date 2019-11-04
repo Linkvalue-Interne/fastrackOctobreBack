@@ -13,6 +13,10 @@
         "symfony/yaml": "4.3.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.2",
+        "hautelook/alice-bundle": "^2.5",
+        "symfony/phpunit-bridge": "^4.3",
+        "symfony/var-dumper": "4.3.*"
     },
     "config": {
         "preferred-install": {
