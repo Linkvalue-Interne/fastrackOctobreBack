@@ -23,8 +23,14 @@ class Partner
     /** @var string */
     private $phone_number;
 
-    /** @var string */
+    /** @var int */
     private $experience;
+
+    /** @var string */
+    private $customer;
+
+    /** @var string */
+    private $project;
 
     /**
      * @return int|null
@@ -130,20 +136,58 @@ class Partner
     }
 
     /**
-     * @return string|null
+     * @return int|null
      */
-    public function getExperience(): ?string
+    public function getExperience(): ?int
     {
         return $this->experience;
     }
 
     /**
-     * @param string $experience
+     * @param int $experience
      * @return Partner
      */
-    public function setExperience(string $experience): Partner
+    public function setExperience(int $experience): Partner
     {
         $this->experience = $experience;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCustomer(): ?string
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param string $customer
+     * @return Partner
+     */
+    public function setCustomer(string $customer): Partner
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getProject(): ?string
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param string $project
+     * @return Partner
+     */
+    public function setProject(string $project): Partner
+    {
+        $this->project = $project;
 
         return $this;
     }

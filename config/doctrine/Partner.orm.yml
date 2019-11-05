@@ -25,3 +25,9 @@ App\Entity\Partner:
       lenght: 30
     experience:
       type: integer
+    customer:
+      type: string
+      lenght: 255
+    project:
+      type: string
+      lenght: 255
