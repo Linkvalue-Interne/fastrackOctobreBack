@@ -21,6 +21,8 @@ class PartnerTest extends TestCase
         $email = $firstname . '.' . $lastname . '@gmail.com';
         $phone_number = '01 02 03 04 05';
         $experience = 1;
+        $customer = 'client';
+        $project = 'project';
 
         $this->partner
             ->setFirstname($firstname)
@@ -28,7 +30,9 @@ class PartnerTest extends TestCase
             ->setJob($job)
             ->setEmail($email)
             ->setPhoneNumber($phone_number)
-            ->setExperience($experience);
+            ->setExperience($experience)
+            ->setCustomer($customer)
+            ->setProject($project);
     }
 
     public function testSetters()
@@ -39,7 +43,9 @@ class PartnerTest extends TestCase
             ->setJob('peintre')
             ->setEmail('chapelle.sixtine@gmail.com')
             ->setPhoneNumber('66 66 66 66 66')
-            ->setExperience(88);
+            ->setExperience(88)
+            ->setCustomer('newClient')
+            ->setProject('newProject');
 
         self::assertSame('michel', $this->partner->getFirstname());
         self::assertSame('ange', $this->partner->getLastname());
@@ -47,6 +53,8 @@ class PartnerTest extends TestCase
         self::assertSame('chapelle.sixtine@gmail.com', $this->partner->getEmail());
         self::assertSame('66 66 66 66 66', $this->partner->getPhoneNumber());
         self::assertSame(88, $this->partner->getExperience());
+        self::assertSame('newClient', $this->partner->getCustomer());
+        self::assertSame('newProject', $this->partner->getProject());
 
         self::assertInstanceOf(Partner::class, $this->partner->setFirstname('string'));
         self::assertInstanceOf(Partner::class, $this->partner->setLastname('string'));
@@ -54,6 +62,8 @@ class PartnerTest extends TestCase
         self::assertInstanceOf(Partner::class, $this->partner->setEmail('string'));
         self::assertInstanceOf(Partner::class, $this->partner->setPhoneNumber('string'));
         self::assertInstanceOf(Partner::class, $this->partner->setExperience(0));
+        self::assertInstanceOf(Partner::class, $this->partner->setCustomer('string'));
+        self::assertInstanceOf(Partner::class, $this->partner->setProject('string'));
     }
 
     public function testGettersNotNull()
@@ -71,6 +81,8 @@ class PartnerTest extends TestCase
         self::assertSame('bob.marley@gmail.com', $this->partner->getEmail());
         self::assertSame('01 02 03 04 05', $this->partner->getPhoneNumber());
         self::assertSame(1, $this->partner->getExperience());
+        self::assertSame('client', $this->partner->getCustomer());
+        self::assertSame('project', $this->partner->getProject());
     }
 
     public function testGettersNull()
@@ -84,5 +96,7 @@ class PartnerTest extends TestCase
         self::assertNull($partnerNull->getEmail());
         self::assertNull($partnerNull->getPhoneNumber());
         self::assertNull($partnerNull->getExperience());
+        self::assertNull($partnerNull->getCustomer());
+        self::assertNull($partnerNull->getProject());
     }
 }

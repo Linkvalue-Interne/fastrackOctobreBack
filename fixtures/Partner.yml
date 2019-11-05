@@ -1,0 +1,37 @@
+App\Entity\Partner:
+  partner_0:
+    firstname: Charles
+    lastname: Xavier
+    job: Professeur
+    email: charles.xavier@link-vaue.fr
+    phone_number: 01 02 03 04 05
+    experience: 50
+    customer: client
+    project: project
+  partner_1:
+    firstname: Jimmy
+    lastname: Hendrix
+    job: Musicien
+    email: jimmy.hendrix@link-vaue.fr
+    phone_number: 01 02 03 04 05
+    experience: 40
+    customer: client
+    project: project
+  partner_3:
+    firstname: Dark
+    lastname: Vador
+    job: Sith
+    email: dark.vador@link-vaue.fr
+    phone_number: 01 02 03 04 05
+    experience: 60
+    customer: client
+    project: project
+  partner_4:
+    firstname: Bruce
+    lastname: Wayne
+    job: Milliardaire
+    email: bruce.wayne@link-vaue.fr
+    phone_number: 01 02 03 04 05
+    experience: 30
+    customer: client
+    project: project
