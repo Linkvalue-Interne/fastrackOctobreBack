@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-nginx -C infra/nginx/suiviTrainingBack-heroku.conf public/
+web: vendor/bin/heroku-php-nginx -C infra/nginx/fastTrackOctobreBack-heroku.conf public/

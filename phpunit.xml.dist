@@ -2,7 +2,7 @@
 
 <!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="bin/.phpunit/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          backupGlobals="false"
          colors="true"
          bootstrap="config/bootstrap.php"
@@ -11,13 +11,18 @@
         <ini name="error_reporting" value="-1" />
         <server name="APP_ENV" value="test" force="true" />
         <server name="SHELL_VERBOSITY" value="-1" />
-        <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
-        <server name="SYMFONY_PHPUNIT_VERSION" value="7.5" />
+        <env name="DATABASE_URL" value="mysql://fastrackOctobreBack:root@fastrackOctobreBack_sql:3306/fastrackOctobreBack_test" />
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Small">
+            <directory>tests/Small</directory>
+        </testsuite>
+        <testsuite name="Medium">
+            <directory>tests/Medium</directory>
+        </testsuite>
+        <testsuite name="Large">
+            <directory>tests/Large</directory>
         </testsuite>
     </testsuites>
 
@@ -26,8 +31,4 @@
             <directory>src</directory>
         </whitelist>
     </filter>
-
-    <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
-    </listeners>
 </phpunit>
