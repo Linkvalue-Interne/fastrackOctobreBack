@@ -2,11 +2,9 @@
 
 namespace App\Entity;
 
-
-class Partner
+class Partner implements EntityInterface
 {
-    /** @var int */
-    private $id;
+    use EntityTrait;
 
     /** @var string */
     private $firstname;
@@ -31,14 +29,6 @@ class Partner
 
     /** @var string */
     private $project;
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     /**
      * @return string|null
