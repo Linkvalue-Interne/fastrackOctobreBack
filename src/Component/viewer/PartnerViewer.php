@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Component\viewer\partnerViewer;
+namespace App\Component\viewer;
 
-use App\Component\retrieveAll\partnerRetriever\PartnerRetriever;
+use App\Component\retrieveAll\PartnerRetriever;
 
 class PartnerViewer
 {
@@ -18,7 +18,7 @@ class PartnerViewer
     /**
      * @return array
      */
-    public function formatList()
+    public function formatList(): array
     {
         $partnerList= [];
 

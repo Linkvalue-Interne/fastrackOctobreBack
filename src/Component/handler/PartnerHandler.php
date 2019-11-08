@@ -1,12 +1,11 @@
 <?php
 
 
-namespace App\Component\handler\partnerHandler;
+namespace App\Component\handler;
 
-use App\Component\handler\HandlerInterface;
-use App\Component\viewer\partnerViewer\PartnerViewer;
+use App\Component\viewer\PartnerViewer;
 
-class ListHandler implements HandlerInterface
+class PartnerHandler implements HandlerInterface
 {
     /** @var PartnerViewer  */
     private $partnerViewer;

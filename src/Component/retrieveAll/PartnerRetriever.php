@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Component\retrieveAll\partnerRetriever;
+namespace App\Component\retrieveAll;
 
 use App\Repository\PartnerRepository;
 
