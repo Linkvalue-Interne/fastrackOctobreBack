@@ -4,8 +4,9 @@
 namespace App\Component\handler;
 
 use App\Component\viewer\PartnerViewer;
+use Symfony\Component\HttpFoundation\Request;
 
-class PartnerHandler implements HandlerInterface
+class OnePartnerHandler implements HandlerInterface
 {
     /** @var PartnerViewer  */
     private $partnerViewer;
@@ -16,10 +17,11 @@ class PartnerHandler implements HandlerInterface
     }
 
     /**
+     * @param Request $request
      * @return array
      */
-    public function handle(): array
+    public function handle(Request $request): array
     {
-        return $this->partnerViewer->formatList();
+        return $this->partnerViewer->formatShow($request->get('id'));
     }
 }

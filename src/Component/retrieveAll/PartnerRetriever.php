@@ -19,4 +19,9 @@ class PartnerRetriever
     {
         return $this->repo->findAll();
     }
+
+    public function getOne(int $id)
+    {
+        return $this->repo->find($id);
+    }
 }

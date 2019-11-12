@@ -4,6 +4,7 @@
 namespace App\Component\viewer;
 
 use App\Component\retrieveAll\PartnerRetriever;
+use Symfony\Component\HttpFoundation\Request;
 
 class PartnerViewer
 {
@@ -16,11 +17,11 @@ class PartnerViewer
     }
 
     /**
-     * @return array
-     */
+ * @return array
+ */
     public function formatList(): array
     {
-        $partnerList= [];
+        $partnerList = [];
 
         foreach ($this->retriever->getAll() as $partner) {
             $partnerList[] = [
@@ -28,10 +29,34 @@ class PartnerViewer
                 'firstName' => $partner->getFirstname(),
                 'lastName' => $partner->getLastname(),
                 'job' => $partner->getJob(),
-                ]
+            ]
             ;
         }
 
         return $partnerList;
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function formatShow(int $id): array
+    {
+        $data  = $this->retriever->getOne($id);
+
+        $partner = [
+            'id' => $data->getId(),
+            'firstName' => $data->getFirstName(),
+            'lastName' => $data->getLastName(),
+            'job' => $data->getJob(),
+            'email' => $data->getEmail(),
+            'phoneNumber' => $data->getPhoneNumber(),
+            'experience' => $data->getExperience(),
+            'customer' => $data->getCustomer(),
+            'project' => $data->getProject(),
+        ]
+        ;
+
+        return $partner;
     }
 }

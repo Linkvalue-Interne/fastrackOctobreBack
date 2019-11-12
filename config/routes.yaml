@@ -1,4 +1,11 @@
 api_list_partner:
-  path: /api/list
+  path: /api/partner/list
   controller: App\Controller\PartnerController::List
   methods: GET
+
+api_show_partner:
+  path: /api/partner/{id}
+  controller: App\Controller\PartnerController::show
+  methods: GET
+  requirements:
+    id: '\d+'

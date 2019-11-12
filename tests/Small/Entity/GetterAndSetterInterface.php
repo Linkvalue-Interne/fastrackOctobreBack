@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Tests;
+namespace App\Tests\Small\Entity;
 
 use Doctrine\ORM\Mapping\Entity;
 

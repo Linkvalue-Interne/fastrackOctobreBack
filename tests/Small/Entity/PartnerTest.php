@@ -1,23 +1,20 @@
 <?php
-
 namespace tests\Small\Entity;
 
 use App\Entity\Partner;
-use App\Tests\GetterAndSetterInterface;
-use App\Tests\GetterTrait;
-use App\Tests\SetterTrait;
+use App\Tests\Small\Entity\GetterAndSetterInterface;
+use App\Tests\Small\Entity\GetterTraitTest;
+use App\Tests\Small\Entity\SetterTraitTest;
 use PHPUnit\Framework\TestCase;
 
 class PartnerTest extends TestCase implements GetterAndSetterInterface
 {
-    use GetterTrait, SetterTrait;
-
+    use GetterTraitTest, SetterTraitTest;
     /** {@inheritDoc} */
     public function init()
     {
         return new Partner();
     }
-
     /** {@inheritDoc} */
     public function providerProperty(): array
     {
