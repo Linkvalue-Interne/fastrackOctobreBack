@@ -2,9 +2,6 @@
 
 namespace App\Entity;
 
-use App\Component\EntityInterface;
-use App\Component\EntityTrait;
-
 class Partner implements EntityInterface
 {
     use EntityTrait;

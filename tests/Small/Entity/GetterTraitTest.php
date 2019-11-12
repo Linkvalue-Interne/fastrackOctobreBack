@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Tests;
+namespace App\Tests\Small\Entity;
 
-trait GetterTrait
+trait GetterTraitTest
 {
     private $object;
 
