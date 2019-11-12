@@ -22,7 +22,7 @@ class PartnerViewer
     {
         $partnerList= [];
 
-        foreach ($this->retriever->allPartner() as $partner) {
+        foreach ($this->retriever->getAll() as $partner) {
             $partnerList[] = [
                 'id' => $partner->getId(),
                 'firstName' => $partner->getFirstname(),

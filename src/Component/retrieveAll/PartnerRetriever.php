@@ -15,7 +15,7 @@ class PartnerRetriever
         $this->repo = $repository;
     }
 
-    public function allPartner()
+    public function getAll()
     {
         return $this->repo->findAll();
     }
