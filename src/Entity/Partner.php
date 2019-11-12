@@ -2,15 +2,18 @@
 
 namespace App\Entity;
 
+use App\Component\EntityInterface;
+use App\Component\EntityTrait;
+
 class Partner implements EntityInterface
 {
     use EntityTrait;
 
     /** @var string */
-    private $firstname;
+    private $firstName;
 
     /** @var string */
-    private $lastname;
+    private $lastName;
 
     /** @var string */
     private $job;
@@ -19,7 +22,7 @@ class Partner implements EntityInterface
     private $email;
 
     /** @var string */
-    private $phone_number;
+    private $phoneNumber;
 
     /** @var int */
     private $experience;
@@ -33,18 +36,18 @@ class Partner implements EntityInterface
     /**
      * @return string|null
      */
-    public function getFirstname(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
     /**
-     * @param string $firstname
+     * @param string $firstName
      * @return Partner
      */
-    public function setFirstname(string $firstname): Partner
+    public function setFirstName(string $firstName): Partner
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstName;
 
         return $this;
     }
@@ -52,18 +55,18 @@ class Partner implements EntityInterface
     /**
      * @return string|null
      */
-    public function getLastname(): ?string
+    public function getLastName(): ?string
     {
-        return $this->lastname;
+        return $this->lastName;
     }
 
     /**
-     * @param string $lastname
+     * @param string $lastName
      * @return Partner
      */
-    public function setLastname(string $lastname): Partner
+    public function setLastName(string $lastName): Partner
     {
-        $this->lastname = $lastname;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -111,16 +114,16 @@ class Partner implements EntityInterface
      */
     public function getPhoneNumber(): ?string
     {
-        return $this->phone_number;
+        return $this->phoneNumber;
     }
 
     /**
-     * @param string $phone_number
+     * @param string $phoneNumber
      * @return Partner
      */
-    public function setPhoneNumber(string $phone_number): Partner
+    public function setPhoneNumber(string $phoneNumber): Partner
     {
-        $this->phone_number = $phone_number;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }

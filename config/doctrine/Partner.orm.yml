@@ -7,10 +7,10 @@ App\Entity\Partner:
       generator:
         strategy: AUTO
   fields:
-    firstname:
+    firstName:
       type: string
       lenght: 255
-    lastname:
+    lastName:
       type: string
       lenght: 255
     job:
@@ -20,7 +20,7 @@ App\Entity\Partner:
       type: string
       lenght: 50
       unique: true
-    phone_number:
+    phoneNumber:
       type: string
       lenght: 30
     experience:
