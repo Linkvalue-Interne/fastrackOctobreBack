@@ -15,7 +15,7 @@ class PartnerControllerTest extends WebTestCase
         $this->client = $this->createClient();
     }
 
-    public function testListReturnResponseStatus()
+    public function testList()
     {
         $this->client->request('GET', '/api/partner/list');
 
@@ -23,36 +23,18 @@ class PartnerControllerTest extends WebTestCase
         $this->assertJson($this->client->getResponse()->getContent());
 
         $dataToCompare = [
-            0 => [
                 'id' => 1,
                 'firstName' => 'Charles',
                 'lastName' => 'Xavier',
                 'job' => 'Professeur',
-            ],
-            1 => [
-                'id' => 2,
-                'firstName' => 'Jimmy',
-                'lastName' => 'Hendrix',
-                'job' => 'Musicien',
-            ],
-            2 => [
-                'id' => 3,
-                'firstName' => 'Dark',
-                'lastName' => 'Vador',
-                'job' => 'Sith',
-            ],
-            3 => [
-                'id' => 4,
-                'firstName' => 'Bruce',
-                'lastName' => 'Wayne',
-                'job' => 'Milliardaire',
-            ],
-        ];
+            ]
+        ;
 
-        $this->assertSame($dataToCompare, json_decode($this->client->getResponse()->getContent(), true));
+        $this->assertGreaterThanOrEqual(1, count(json_decode($this->client->getResponse()->getContent())));
+        $this->assertSame($dataToCompare, json_decode($this->client->getResponse()->getContent(), true)[0]);
     }
 
-    public function testShowReturnResponseStatus()
+    public function testShow()
     {
         $this->client->request('GET', '/api/partner/1');
 

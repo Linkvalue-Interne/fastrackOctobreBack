@@ -44,7 +44,7 @@ class PartnerViewer
     {
         $data  = $this->retriever->getOne($id);
 
-        $partner = [
+        return $partner = [
             'id' => $data->getId(),
             'firstName' => $data->getFirstName(),
             'lastName' => $data->getLastName(),
@@ -54,9 +54,7 @@ class PartnerViewer
             'experience' => $data->getExperience(),
             'customer' => $data->getCustomer(),
             'project' => $data->getProject(),
-        ]
+            ]
         ;
-
-        return $partner;
     }
 }
