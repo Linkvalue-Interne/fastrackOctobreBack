@@ -18,6 +18,9 @@ stop:
 down:
 	docker-compose down --rmi all -v --remove-orphans
 
+lint:
+	vendor/bin/phpcs src
+
 test:
 	docker exec -it fastrackOctobreBack_php sh -c "APP_ENV=test php bin/console doctrine:database:drop --force --if-exists"
 	docker exec -it fastrackOctobreBack_php sh -c "APP_ENV=test php bin/console doctrine:database:create --if-not-exists"
@@ -34,3 +37,11 @@ test-medium: test
 test-large: TESTSUITE=Large
 test-large: test
 
+## Composer commands
+######################
+
+install-vendor:
+	docker exec -it fastrackOctobreBack_php composer install
+
+update-vendor:
+	docker exec -it fastrackOctobreBack_php composer update
