@@ -79,7 +79,7 @@ jobs:
         user: root
     working_directory: ~/app
     environment:
-      HEROKU_APP: fastrack-octobre-back
+      HEROKU_APP: fasttrack-octobre-back
     steps:
       - checkout
       - run:
