@@ -53,7 +53,7 @@ jobs:
           name: Setup environment
           command: |
             sudo sysctl -w vm.max_map_count=262144
-            mv .env.bak .env
+            mv .env.dist .env
             echo 'APP_ENV=test' >> .env
             echo 'DATABASE_URL_TEST=mysql://root:root@fastrackOctobreBack_sql:3306/fastrackOctobreBack_test' >> .env
             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
