@@ -31,6 +31,9 @@ App\Entity\Partner:
     project:
       type: string
       lenght: 255
+    avatar:
+      type: string
+      lenght: 255
     createdAt:
       type: datetime
       gedmo:

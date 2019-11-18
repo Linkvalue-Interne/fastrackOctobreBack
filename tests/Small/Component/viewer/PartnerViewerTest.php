@@ -37,6 +37,7 @@ class PartnerViewerTest extends TestCase
         self::assertArrayHasKey('firstName', $dataFormatted[0]);
         self::assertArrayHasKey('lastName', $dataFormatted[0]);
         self::assertArrayHasKey('job', $dataFormatted[0]);
+        self::assertArrayHasKey('avatar', $dataFormatted[0]);
     }
 
     public function testFormatShowKeyExist()
@@ -59,5 +60,6 @@ class PartnerViewerTest extends TestCase
         self::assertArrayHasKey('experience', $dataFormatted);
         self::assertArrayHasKey('customer', $dataFormatted);
         self::assertArrayHasKey('project', $dataFormatted);
+        self::assertArrayHasKey('avatar', $dataFormatted);
     }
 }

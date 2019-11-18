@@ -27,6 +27,7 @@ class PartnerControllerTest extends WebTestCase
                 'firstName' => 'Charles',
                 'lastName' => 'Xavier',
                 'job' => 'Professeur',
+                'avatar' => 'cat4.jpg',
             ]
         ;
 
@@ -51,6 +52,7 @@ class PartnerControllerTest extends WebTestCase
             'experience' => 50,
             'customer' => 'client',
             'project' => 'project',
+            'avatar' => 'cat4.jpg',
         ]
         ;
 
