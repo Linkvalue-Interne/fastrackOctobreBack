@@ -8,6 +8,7 @@ App\Entity\Partner:
     experience: 50
     customer: client
     project: project
+    avatar: cat4.jpg
   partner_1:
     firstname: Jimmy
     lastname: Hendrix
@@ -17,6 +18,7 @@ App\Entity\Partner:
     experience: 40
     customer: client
     project: project
+    avatar: cat4.jpg
   partner_3:
     firstname: Dark
     lastname: Vador
@@ -26,6 +28,7 @@ App\Entity\Partner:
     experience: 60
     customer: client
     project: project
+    avatar: cat4.jpg
   partner_4:
     firstname: Bruce
     lastname: Wayne
@@ -35,3 +38,4 @@ App\Entity\Partner:
     experience: 30
     customer: client
     project: project
+    avatar: cat4.jpg

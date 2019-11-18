@@ -29,6 +29,7 @@ class PartnerViewer
                 'firstName' => $partner->getFirstname(),
                 'lastName' => $partner->getLastname(),
                 'job' => $partner->getJob(),
+                'avatar' => $partner->getAvatar(),
             ]
             ;
         }
@@ -54,6 +55,7 @@ class PartnerViewer
             'experience' => $data->getExperience(),
             'customer' => $data->getCustomer(),
             'project' => $data->getProject(),
+            'avatar' => $data->getAvatar(),
             ]
         ;
     }

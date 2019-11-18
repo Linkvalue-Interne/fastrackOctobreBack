@@ -30,6 +30,9 @@ class Partner implements EntityInterface
     /** @var string */
     private $project;
 
+    /** @var string */
+    private $avatar;
+
     /**
      * @return string|null
      */
@@ -178,6 +181,25 @@ class Partner implements EntityInterface
     public function setProject(string $project): Partner
     {
         $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string $avatar
+     * @return Partner
+     */
+    public function setAvatar(string $avatar): Partner
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }
