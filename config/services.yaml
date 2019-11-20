@@ -32,7 +32,3 @@ services:
             - { name: doctrine.event_subscriber }
         calls:
             - [ setAnnotationReader, [ "@annotation_reader" ] ]
-
-    App\EventListener\ExceptionListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception }
