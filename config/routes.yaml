@@ -1,11 +1,30 @@
 api_list_partner:
   path: /api/partner/list
-  controller: App\Controller\PartnerController::List
+  controller: App\Controller\PartnerController::list
   methods: GET
 
 api_show_partner:
   path: /api/partner/{id}
   controller: App\Controller\PartnerController::show
   methods: GET
+  requirements:
+    id: '\d+'
+
+api_create_partner:
+  path: /api/partner
+  controller: App\Controller\PartnerController::create
+  methods: POST
+
+api_update_partner:
+  path: /api/partner/{id}
+  controller: App\Controller\PartnerController::update
+  methods: PUT
+  requirements:
+    id: '\d+'
+
+api_delete_partner:
+  path: /api/partner/{id}
+  controller: App\Controller\PartnerController::delete
+  methods: DELETE
   requirements:
     id: '\d+'

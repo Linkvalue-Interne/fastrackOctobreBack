@@ -3,17 +3,23 @@
 
 namespace App\Component\handler;
 
+use App\Component\retrieveAll\PartnerRetriever;
 use App\Component\viewer\PartnerViewer;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class OnePartnerHandler implements HandlerInterface
 {
-    /** @var PartnerViewer  */
+    /** @var PartnerViewer */
     private $partnerViewer;
 
-    public function __construct(PartnerViewer $viewer)
+    /** @var PartnerRetriever */
+    private $partnerRetriever;
+
+    public function __construct(PartnerViewer $viewer, PartnerRetriever $retriever)
     {
         $this->partnerViewer = $viewer;
+        $this->partnerRetriever = $retriever;
     }
 
     /**
@@ -22,6 +28,11 @@ class OnePartnerHandler implements HandlerInterface
      */
     public function handle(Request $request): array
     {
-        return $this->partnerViewer->formatShow($request->get('id'));
+        $partner = $this->partnerRetriever->getOne($request->get('id'));
+        if (null === $partner) {
+            return [Response::HTTP_NO_CONTENT];
+        }
+
+        return $this->partnerViewer->formatShow($partner);
     }
 }

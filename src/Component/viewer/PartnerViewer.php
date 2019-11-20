@@ -3,27 +3,17 @@
 
 namespace App\Component\viewer;
 
-use App\Component\retrieveAll\PartnerRetriever;
-use Symfony\Component\HttpFoundation\Request;
-
 class PartnerViewer
 {
-    /** @var PartnerRetriever  */
-    private $retriever;
-
-    public function __construct(PartnerRetriever $retriever)
-    {
-        $this->retriever = $retriever;
-    }
-
     /**
- * @return array
- */
-    public function formatList(): array
+     * @param $data
+     * @return array
+     */
+    public function formatList(array $data): array
     {
         $partnerList = [];
 
-        foreach ($this->retriever->getAll() as $partner) {
+        foreach ($data as $partner) {
             $partnerList[] = [
                 'id' => $partner->getId(),
                 'firstName' => $partner->getFirstname(),
@@ -38,13 +28,11 @@ class PartnerViewer
     }
 
     /**
-     * @param int $id
+     * @param $data
      * @return array
      */
-    public function formatShow(int $id): array
+    public function formatShow($data): array
     {
-        $data  = $this->retriever->getOne($id);
-
         return $partner = [
             'id' => $data->getId(),
             'firstName' => $data->getFirstName(),
