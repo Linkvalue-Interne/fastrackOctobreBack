@@ -57,7 +57,9 @@ class OnePartnerHandlerTest extends TestCase
             ->with($partner)
             ->willReturn($expect);
 
-        $this->assertIsArray($this->init()->handle($this->request));
+        $actual = $this->init()->handle($this->request);
+
+        $this->assertSame($expect, $actual);
     }
 
     public function testHandleBadRequest()
@@ -78,7 +80,6 @@ class OnePartnerHandlerTest extends TestCase
 
         $actual = $this->init()->handle($this->request);
 
-        $this->assertIsArray($actual);
         $this->assertSame([Response::HTTP_NO_CONTENT], $actual);
     }
 }

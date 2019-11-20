@@ -6,6 +6,7 @@ namespace App\Tests\Small\Component\handler;
 use App\Component\handler\DeleteHandler;
 use App\Component\retrieveAll\PartnerRetriever;
 use App\Component\writer\Writer;
+use App\Entity\Partner;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +36,7 @@ class DeletePartnerHandlerTest extends TestCase
     public function testHandleSuccessReturnArray()
     {
         $id = 1;
+        $partner = $this->createMock(Partner::class);
         $expect = [Response::HTTP_OK];
 
         $this->request
@@ -47,9 +49,17 @@ class DeletePartnerHandlerTest extends TestCase
             ->expects($this->once())
             ->method('getOne')
             ->with($id)
+            ->willReturn($partner);
+
+        $this->writer
+            ->expects($this->once())
+            ->method('deletePartner')
+            ->with($id)
             ->willReturn($expect);
 
-        $this->assertIsArray($this->init()->handle($this->request));
+        $actual = $this->init()->handle($this->request);
+
+        $this->assertSame($expect, $actual);
     }
 
     public function testHandleBaDRequestReturnArray()
@@ -69,6 +79,8 @@ class DeletePartnerHandlerTest extends TestCase
             ->with($id)
             ->willReturn(null);
 
-        $this->assertSame($expect, $this->init()->handle($this->request));
+        $actual = $this->init()->handle($this->request);
+
+        $this->assertSame($expect, $actual);
     }
 }
