@@ -3,7 +3,6 @@
 
 namespace App\Component\writer;
 
-use App\Component\HandleErrorFormTrait;
 use App\Component\retrieveAll\PartnerRetriever;
 use App\Component\viewer\PartnerViewer;
 use App\Entity\Partner;
@@ -13,8 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Writer
 {
-    use handleErrorFormTrait;
-
     /** @var ObjectManager  */
     private $manager;
 
