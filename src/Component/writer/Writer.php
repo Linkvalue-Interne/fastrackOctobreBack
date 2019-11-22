@@ -3,73 +3,25 @@
 
 namespace App\Component\writer;
 
-use App\Component\retrieveAll\PartnerRetriever;
-use App\Component\viewer\PartnerViewer;
 use App\Entity\Partner;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\Response;
+use App\Repository\PartnerRepository;
 
 class Writer
 {
-    /** @var ObjectManager  */
-    private $manager;
+    /** @var PartnerRepository  */
+    private $repository;
 
-    /** @var PartnerRetriever  */
-    private $retriever;
-
-    /** @var FormFactoryInterface  */
-    private $formFactory;
-
-    /** @var PartnerViewer  */
-    private $viewer;
-
-    public function __construct(
-        ObjectManager $manager,
-        PartnerRetriever $retriever,
-        FormFactoryInterface $formFactory,
-        PartnerViewer $viewer
-    ) {
-        $this->manager = $manager;
-        $this->retriever = $retriever;
-        $this->formFactory = $formFactory;
-        $this->viewer = $viewer;
-    }
-
-    /**
-     * @param int $id
-     * @return array
-     */
-    public function deletePartner(int $id): array
+    public function __construct(PartnerRepository $partnerRepository)
     {
-        /** @var  Partner */
-        $partner =  $this->retriever->getOne($id);
-
-        $partner->setIsActive(false);
-
-        $this->save($partner, false);
-
-        if (false === $this->retriever->getOne($id)->isActive()) {
-            return [Response::HTTP_OK];
-        }
-
-        return [Response::HTTP_BAD_REQUEST];
+        $this->repository = $partnerRepository;
     }
 
     /**
      * @param Partner $partner
-     * @param bool $persist
-     * @return array
-     *
+     * @return Partner
      */
-    public function save(Partner $partner, bool $persist = true)
+    public function savePartner(Partner $partner): Partner
     {
-        if (true === $persist) {
-            $this->manager->persist($partner);
-        }
-
-        $this->manager->flush();
-
-        return [Response::HTTP_OK];
+        return $this->repository->save($partner);
     }
 }

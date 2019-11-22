@@ -21,15 +21,15 @@ class PartnerRetriever
      */
     public function getAll()
     {
-        return $this->repo->findBy(['isActive' => true]);
+        return $this->repo->findBy(['isActive' => true]) ?: [];
     }
 
     /**
      * @param int $id
-     * @return object|null
+     * @return object|array
      */
     public function getOne(int $id)
     {
-        return $this->repo->find($id);
+        return $this->repo->findOneBy(['id' => $id, 'isActive' => true]) ?: [];
     }
 }

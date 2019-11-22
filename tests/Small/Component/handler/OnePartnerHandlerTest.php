@@ -9,7 +9,6 @@ use App\Component\viewer\PartnerViewer;
 use App\Entity\Partner;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class OnePartnerHandlerTest extends TestCase
 {
@@ -33,7 +32,7 @@ class OnePartnerHandlerTest extends TestCase
         return new OnePartnerHandler($this->viewer, $this->retriever);
     }
 
-    public function testHandleSuccessReturnArray()
+    public function testHandleSuccessReturn()
     {
         $id = 1;
         $partner = $this->createMock(Partner::class);
@@ -76,10 +75,10 @@ class OnePartnerHandlerTest extends TestCase
             ->expects($this->once())
             ->method('getOne')
             ->with($id)
-            ->willReturn(null);
+            ->willReturn([]);
 
         $actual = $this->init()->handle($this->request);
 
-        $this->assertSame([Response::HTTP_NO_CONTENT], $actual);
+        $this->assertSame([], $actual);
     }
 }
