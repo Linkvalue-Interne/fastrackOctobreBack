@@ -35,7 +35,7 @@ class PartnerViewer
      */
     public function formatShow(Partner $partner): array
     {
-        return $data = [
+        return [
             'id' => $partner->getId(),
             'firstName' => $partner->getFirstName(),
             'lastName' => $partner->getLastName(),
