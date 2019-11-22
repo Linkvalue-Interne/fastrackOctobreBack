@@ -3,6 +3,7 @@
 
 namespace App\Tests\Controller;
 
+use App\CustomException\InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -61,17 +62,40 @@ class PartnerControllerTest extends WebTestCase
 
     public function testDeleteExistId()
     {
+        $this->markTestSkipped("A compléter");
+
+        $expect = $this->createMock(\stdClass::class);
+
+        $expect
+            ->expects($this->once())
+            ->willReturn(['statusCode' => Response::HTTP_OK]);
+
+
         $this->client->request('DELETE', '/api/partner/1');
 
-        $this->assertSame(['statusCode' => Response::HTTP_OK], json_decode($this->client->getResponse()->getContent()));
+        $this->assertSame($expect, json_decode($this->client->getResponse()->getContent()));
         $this->assertJson($this->client->getResponse()->getContent());
     }
 
     public function testDeleteNotExistId()
     {
+        $this->markTestSkipped("A compléter");
+
+        $data = [
+            "status" => 404,
+            "message" => "Invalid argument",
+            ]
+        ;
+
+        $expect = $this->createMock(\stdClass::class);
+
+        $expect
+            ->expects($this->once())
+            ->willReturn($data);
+
         $this->client->request('DELETE', '/api/partner/10');
 
-        $this->assertSame([Response::HTTP_BAD_REQUEST], json_decode($this->client->getResponse()->getContent()));
+        $this->assertSame($expect, json_decode($this->client->getResponse()->getContent()), true);
         $this->assertJson($this->client->getResponse()->getContent());
     }
 }

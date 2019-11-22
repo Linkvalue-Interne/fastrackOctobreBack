@@ -70,8 +70,8 @@ class PartnerRetrieverTest extends TestCase
 
         $this->repository
             ->expects($this->once())
-            ->method('find')
-            ->with($id)
+            ->method('findOneBy')
+            ->with(['id' => $id, 'isActive' => true])
             ->willReturn($expect);
 
         $this->assertSame($expect, $this->init()->getOne($id));
@@ -83,10 +83,10 @@ class PartnerRetrieverTest extends TestCase
 
         $this->repository
             ->expects($this->once())
-            ->method('find')
-            ->with($id)
-            ->willReturn(null);
+            ->method('findOneBy')
+            ->with(['id' => $id, 'isActive' => true])
+            ->willReturn([]);
 
-        $this->assertSame(null, $this->init()->getOne($id));
+        $this->assertSame([], $this->init()->getOne($id));
     }
 }
