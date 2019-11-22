@@ -63,7 +63,7 @@ class PartnerControllerTest extends WebTestCase
     {
         $this->client->request('DELETE', '/api/partner/1');
 
-        $this->assertSame([Response::HTTP_OK], json_decode($this->client->getResponse()->getContent()));
+        $this->assertSame(['statusCode' => Response::HTTP_OK], json_decode($this->client->getResponse()->getContent()));
         $this->assertJson($this->client->getResponse()->getContent());
     }
 
