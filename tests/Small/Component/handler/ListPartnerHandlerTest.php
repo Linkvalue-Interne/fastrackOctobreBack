@@ -66,6 +66,6 @@ class ListPartnerHandlerTest extends TestCase
 
         $actual = $this->init()->handle($this->request);
 
-        $this->assertSame([Response::HTTP_NO_CONTENT], $actual);
+        $this->assertSame($listPartner, $actual);
     }
 }
