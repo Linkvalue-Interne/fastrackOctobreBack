@@ -3,6 +3,8 @@
 
 namespace App\Component\viewer;
 
+use App\Entity\Partner;
+
 class PartnerViewer
 {
     /**
@@ -20,7 +22,7 @@ class PartnerViewer
                 'lastName' => $partner->getLastname(),
                 'job' => $partner->getJob(),
                 'avatar' => $partner->getAvatar(),
-            ]
+                ]
             ;
         }
 
@@ -28,22 +30,22 @@ class PartnerViewer
     }
 
     /**
-     * @param $data
+     * @param Partner $partner
      * @return array
      */
-    public function formatShow($data): array
+    public function formatShow(Partner $partner): array
     {
-        return $partner = [
-            'id' => $data->getId(),
-            'firstName' => $data->getFirstName(),
-            'lastName' => $data->getLastName(),
-            'job' => $data->getJob(),
-            'email' => $data->getEmail(),
-            'phoneNumber' => $data->getPhoneNumber(),
-            'experience' => $data->getExperience(),
-            'customer' => $data->getCustomer(),
-            'project' => $data->getProject(),
-            'avatar' => $data->getAvatar(),
+        return $data = [
+            'id' => $partner->getId(),
+            'firstName' => $partner->getFirstName(),
+            'lastName' => $partner->getLastName(),
+            'job' => $partner->getJob(),
+            'email' => $partner->getEmail(),
+            'phoneNumber' => $partner->getPhoneNumber(),
+            'experience' => $partner->getExperience(),
+            'customer' => $partner->getCustomer(),
+            'project' => $partner->getProject(),
+            'avatar' => $partner->getAvatar(),
             ]
         ;
     }

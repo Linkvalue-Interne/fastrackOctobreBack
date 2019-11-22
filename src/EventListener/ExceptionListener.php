@@ -16,6 +16,13 @@ class ExceptionListener
         $errors = [];
 
         switch ($exception) {
+            case $exception instanceof ValidatorException:
+                $errors = [
+                    'error' => $exception->getCode(),
+                    'message' => $exception->getErrors(),
+                    ]
+                ;
+                break;
             case $exception instanceof InvalidArgumentException:
                 $errors = [
                     'status' => $exception->getCode(),
