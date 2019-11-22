@@ -5,6 +5,7 @@ namespace App\Component\handler;
 
 use App\Component\retrieveAll\PartnerRetriever;
 use App\Component\writer\Writer;
+use App\CustomException\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,12 +29,14 @@ class DeleteHandler implements HandlerInterface
      */
     public function handle(Request $request): array
     {
-        $PartnerId  = $request->get('id');
+        $partner = $this->partnerRetriever->getOne($request->get('id'));
 
-        if ($this->partnerRetriever->getOne($PartnerId)) {
-            return $this->writer->deletePartner($PartnerId);
+        if (!$partner) {
+            throw new InvalidArgumentException();
         }
 
-        return [Response::HTTP_BAD_REQUEST];
+        $this->writer->savePartner($partner->setIsactive(false));
+
+        return ['statusCode' => Response::HTTP_OK];
     }
 }

@@ -6,6 +6,7 @@ namespace App\Tests\Small\Component\handler;
 use App\Component\handler\DeleteHandler;
 use App\Component\retrieveAll\PartnerRetriever;
 use App\Component\writer\Writer;
+use App\CustomException\InvalidArgumentException;
 use App\Entity\Partner;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,7 @@ class DeletePartnerHandlerTest extends TestCase
     {
         $id = 1;
         $partner = $this->createMock(Partner::class);
-        $expect = [Response::HTTP_OK];
+        $expect = ['statusCode' => Response::HTTP_OK];
 
         $this->request
             ->expects($this->once())
@@ -53,9 +54,8 @@ class DeletePartnerHandlerTest extends TestCase
 
         $this->writer
             ->expects($this->once())
-            ->method('deletePartner')
-            ->with($id)
-            ->willReturn($expect);
+            ->method('savePartner')
+            ->willReturn($partner);
 
         $actual = $this->init()->handle($this->request);
 
@@ -65,7 +65,7 @@ class DeletePartnerHandlerTest extends TestCase
     public function testHandleBaDRequestReturnArray()
     {
         $id = 1;
-        $expect = [Response::HTTP_BAD_REQUEST];
+        $this->expectException(InvalidArgumentException::class);
 
         $this->request
             ->expects($this->once())
@@ -81,6 +81,7 @@ class DeletePartnerHandlerTest extends TestCase
 
         $actual = $this->init()->handle($this->request);
 
-        $this->assertSame($expect, $actual);
+
+        $this->assertSame($this->getExpectedException(), $actual);
     }
 }
