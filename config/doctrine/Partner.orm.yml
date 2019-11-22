@@ -19,7 +19,6 @@ App\Entity\Partner:
     email:
       type: string
       lenght: 50
-      unique: true
     phoneNumber:
       type: string
       lenght: 30
@@ -44,3 +43,5 @@ App\Entity\Partner:
       gedmo:
         timestampable:
           on: update
+    isActive:
+      type: boolean

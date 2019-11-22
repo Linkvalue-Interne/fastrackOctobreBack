@@ -12,9 +12,12 @@ class PartnerRetrieverTest extends TestCase
 {
     private $repository;
 
+    private $partner;
+
     protected function setUp(): void
     {
         $this->repository = $this->createMock(PartnerRepository::class);
+        $this->partner = $this->createMock(Partner::class);
     }
 
     public function init(): PartnerRetriever
@@ -24,34 +27,66 @@ class PartnerRetrieverTest extends TestCase
 
     public function testAllPartnerReturnData()
     {
-        $expect[] = $this->createMock(Partner::class);
+        $expect = [$this->partner, $this->partner, $this->partner];
+
         $this->repository
             ->expects($this->once())
-            ->method('findAll')
+            ->method('findBy')
+            ->with(['isActive' => true])
             ->willReturn($expect);
 
-        self::assertCount(1, $this->init()->getAll());
+        $this->assertCount(3, $this->init()->getAll());
     }
 
     public function testAllPartnerReturnArray()
     {
-        $expect[] = $this->createMock(Partner::class);
+        $expect = [$this->partner, $this->partner, $this->partner];
+
         $this->repository
             ->expects($this->once())
-            ->method('findAll')
+            ->method('findBy')
+            ->with(['isActive' => true])
             ->willReturn($expect);
 
-        self::assertIsArray($this->init()->getAll());
+        $this->assertIsArray($this->init()->getAll());
+    }
+
+    public function testAllPartnerReturnEmptyArray()
+    {
+        $expect = [];
+
+        $this->repository
+            ->expects($this->once())
+            ->method('findBy')
+            ->willReturn($expect);
+
+        $this->assertEmpty($this->init()->getAll());
     }
 
     public function testOnePartnerReturnSuccess()
     {
+        $id = 1;
         $expect = $this->createMock(Partner::class);
+
         $this->repository
             ->expects($this->once())
             ->method('find')
+            ->with($id)
             ->willReturn($expect);
 
-        self::assertSame($expect, $this->init()->getOne(1));
+        $this->assertSame($expect, $this->init()->getOne($id));
+    }
+
+    public function testOnePartnerReturnNull()
+    {
+        $id = 1;
+
+        $this->repository
+            ->expects($this->once())
+            ->method('find')
+            ->with($id)
+            ->willReturn(null);
+
+        $this->assertSame(null, $this->init()->getOne($id));
     }
 }

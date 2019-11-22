@@ -3,34 +3,26 @@
 
 namespace App\Component\viewer;
 
-use App\Component\retrieveAll\PartnerRetriever;
-use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Partner;
 
 class PartnerViewer
 {
-    /** @var PartnerRetriever  */
-    private $retriever;
-
-    public function __construct(PartnerRetriever $retriever)
-    {
-        $this->retriever = $retriever;
-    }
-
     /**
- * @return array
- */
-    public function formatList(): array
+     * @param $data
+     * @return array
+     */
+    public function formatList(array $data): array
     {
         $partnerList = [];
 
-        foreach ($this->retriever->getAll() as $partner) {
+        foreach ($data as $partner) {
             $partnerList[] = [
                 'id' => $partner->getId(),
                 'firstName' => $partner->getFirstname(),
                 'lastName' => $partner->getLastname(),
                 'job' => $partner->getJob(),
                 'avatar' => $partner->getAvatar(),
-            ]
+                ]
             ;
         }
 
@@ -38,24 +30,22 @@ class PartnerViewer
     }
 
     /**
-     * @param int $id
+     * @param Partner $partner
      * @return array
      */
-    public function formatShow(int $id): array
+    public function formatShow(Partner $partner): array
     {
-        $data  = $this->retriever->getOne($id);
-
-        return $partner = [
-            'id' => $data->getId(),
-            'firstName' => $data->getFirstName(),
-            'lastName' => $data->getLastName(),
-            'job' => $data->getJob(),
-            'email' => $data->getEmail(),
-            'phoneNumber' => $data->getPhoneNumber(),
-            'experience' => $data->getExperience(),
-            'customer' => $data->getCustomer(),
-            'project' => $data->getProject(),
-            'avatar' => $data->getAvatar(),
+        return [
+            'id' => $partner->getId(),
+            'firstName' => $partner->getFirstName(),
+            'lastName' => $partner->getLastName(),
+            'job' => $partner->getJob(),
+            'email' => $partner->getEmail(),
+            'phoneNumber' => $partner->getPhoneNumber(),
+            'experience' => $partner->getExperience(),
+            'customer' => $partner->getCustomer(),
+            'project' => $partner->getProject(),
+            'avatar' => $partner->getAvatar(),
             ]
         ;
     }

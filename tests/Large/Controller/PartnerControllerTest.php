@@ -58,4 +58,20 @@ class PartnerControllerTest extends WebTestCase
 
         $this->assertSame($dataToCompare, json_decode($this->client->getResponse()->getContent(), true));
     }
+
+    public function testDeleteExistId()
+    {
+        $this->client->request('DELETE', '/api/partner/1');
+
+        $this->assertSame([Response::HTTP_OK], json_decode($this->client->getResponse()->getContent()));
+        $this->assertJson($this->client->getResponse()->getContent());
+    }
+
+    public function testDeleteNotExistId()
+    {
+        $this->client->request('DELETE', '/api/partner/10');
+
+        $this->assertSame([Response::HTTP_BAD_REQUEST], json_decode($this->client->getResponse()->getContent()));
+        $this->assertJson($this->client->getResponse()->getContent());
+    }
 }

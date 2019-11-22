@@ -1,43 +1,44 @@
 <?php
 
 
-namespace App\Tests\Component\handler;
+namespace App\Tests\Small\Component\handler;
 
-use App\Component\handler\OnePartnerHandler;
+use App\Component\handler\DeleteHandler;
 use App\Component\retrieveAll\PartnerRetriever;
-use App\Component\viewer\PartnerViewer;
+use App\Component\writer\Writer;
+use App\CustomException\InvalidArgumentException;
 use App\Entity\Partner;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class OnePartnerHandlerTest extends TestCase
+class DeletePartnerHandlerTest extends TestCase
 {
-    private $viewer;
-
-    private $request;
+    private $writer;
 
     private $retriever;
+
+    private $request;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->viewer = $this->createMock(PartnerViewer::class);
+        $this->writer = $this->createMock(Writer::class);
         $this->retriever = $this->createMock(PartnerRetriever::class);
         $this->request = $this->createMock(Request::class);
     }
 
     public function init()
     {
-        return new OnePartnerHandler($this->viewer, $this->retriever);
+        return new DeleteHandler($this->writer, $this->retriever);
     }
 
     public function testHandleSuccessReturnArray()
     {
         $id = 1;
         $partner = $this->createMock(Partner::class);
-        $expect = ['FormatPartner'];
+        $expect = ['statusCode' => Response::HTTP_OK];
 
         $this->request
             ->expects($this->once())
@@ -51,20 +52,20 @@ class OnePartnerHandlerTest extends TestCase
             ->with($id)
             ->willReturn($partner);
 
-        $this->viewer
+        $this->writer
             ->expects($this->once())
-            ->method('formatShow')
-            ->with($partner)
-            ->willReturn($expect);
+            ->method('savePartner')
+            ->willReturn($partner);
 
         $actual = $this->init()->handle($this->request);
 
         $this->assertSame($expect, $actual);
     }
 
-    public function testHandleBadRequest()
+    public function testHandleBaDRequestReturnArray()
     {
         $id = 1;
+        $this->expectException(InvalidArgumentException::class);
 
         $this->request
             ->expects($this->once())
@@ -80,6 +81,7 @@ class OnePartnerHandlerTest extends TestCase
 
         $actual = $this->init()->handle($this->request);
 
-        $this->assertSame([Response::HTTP_NO_CONTENT], $actual);
+
+        $this->assertSame($this->getExpectedException(), $actual);
     }
 }

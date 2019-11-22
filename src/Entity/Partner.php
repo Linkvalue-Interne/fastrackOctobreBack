@@ -30,8 +30,11 @@ class Partner implements EntityInterface
     /** @var string */
     private $project;
 
+    /** @var bool */
+    private $isActive = 1;
+
     /** @var string */
-    private $avatar;
+    private $avatar = 'default.jpg';
 
     /**
      * @return string|null
@@ -181,6 +184,25 @@ class Partner implements EntityInterface
     public function setProject(string $project): Partner
     {
         $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param bool $isActive
+     * @return Partner
+     */
+    public function setIsActive(bool $isActive): Partner
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }
