@@ -76,10 +76,10 @@ class OnePartnerHandlerTest extends TestCase
             ->expects($this->once())
             ->method('getOne')
             ->with($id)
-            ->willReturn(null);
+            ->willReturn([]);
 
         $actual = $this->init()->handle($this->request);
 
-        $this->assertSame([Response::HTTP_NO_CONTENT], $actual);
+        $this->assertSame([], $actual);
     }
 }
