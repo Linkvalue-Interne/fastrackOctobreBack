@@ -6,7 +6,6 @@ namespace App\Component\handler;
 use App\Component\retrieveAll\PartnerRetriever;
 use App\Component\viewer\PartnerViewer;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class ListPartnerHandler implements HandlerInterface
 {
@@ -29,10 +28,7 @@ class ListPartnerHandler implements HandlerInterface
     public function handle(Request $request): array
     {
         $listPartner = $this->partnerRetriever->getAll();
-        if (null == $listPartner) {
-            return [Response::HTTP_NO_CONTENT];
-        }
 
-        return $this->partnerViewer->formatList($listPartner);
+        return $listPartner ? $this->partnerViewer->formatList($listPartner) : $listPartner;
     }
 }
