@@ -62,40 +62,21 @@ class PartnerControllerTest extends WebTestCase
 
     public function testDeleteExistId()
     {
-        $this->markTestSkipped("A compléter");
-
-        $expect = $this->createMock(\stdClass::class);
-
-        $expect
-            ->expects($this->once())
-            ->willReturn(['statusCode' => Response::HTTP_OK]);
-
+        $expect = '{"statusCode":200}';
 
         $this->client->request('DELETE', '/api/partner/1');
 
-        $this->assertSame($expect, json_decode($this->client->getResponse()->getContent()));
+        $this->assertSame($expect, $this->client->getResponse()->getContent());
         $this->assertJson($this->client->getResponse()->getContent());
     }
 
     public function testDeleteNotExistId()
     {
-        $this->markTestSkipped("A compléter");
-
-        $data = [
-            "status" => 404,
-            "message" => "Invalid argument",
-            ]
-        ;
-
-        $expect = $this->createMock(\stdClass::class);
-
-        $expect
-            ->expects($this->once())
-            ->willReturn($data);
+        $expect = '{"status":404,"message":"Invalid argument"}';
 
         $this->client->request('DELETE', '/api/partner/10');
 
-        $this->assertSame($expect, json_decode($this->client->getResponse()->getContent()), true);
+        $this->assertSame($expect, $this->client->getResponse()->getContent());
         $this->assertJson($this->client->getResponse()->getContent());
     }
 }
