@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Component\handler\CreateHandler;
 use App\Component\handler\DeleteHandler;
 use App\Component\handler\ListPartnerHandler;
 use App\Component\handler\OnePartnerHandler;
@@ -39,15 +38,5 @@ class PartnerController
     public function delete(DeleteHandler $deleteHandler, Request $request): JsonResponse
     {
         return new JsonResponse($deleteHandler->handle($request));
-    }
-
-    /**
-     * @param CreateHandler $createHandler
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function create(CreateHandler $createHandler, Request $request): JsonResponse
-    {
-        return new JsonResponse($createHandler->handle($request));
     }
 }
