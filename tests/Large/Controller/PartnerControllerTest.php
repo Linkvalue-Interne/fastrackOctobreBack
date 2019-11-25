@@ -79,4 +79,15 @@ class PartnerControllerTest extends WebTestCase
         $this->assertSame($expect, $this->client->getResponse()->getContent());
         $this->assertJson($this->client->getResponse()->getContent());
     }
+
+    public function testCreateWrongKey()
+    {
+        $this->markTestSkipped();
+        $expect = '{"statusCode":400}';
+
+        $this->client->request('POST', '/api/partner');
+
+        $this->assertSame($expect, $this->client->getResponse()->getContent());
+        $this->assertJson($this->client->getResponse()->getContent());
+    }
 }

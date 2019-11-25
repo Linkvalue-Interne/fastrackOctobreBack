@@ -16,3 +16,8 @@ api_delete_partner:
   methods: DELETE
   requirements:
     id: '\d+'
+
+api_create_partner:
+  path: /api/partner
+  controller: App\Controller\PartnerController::create
+  methods: POST

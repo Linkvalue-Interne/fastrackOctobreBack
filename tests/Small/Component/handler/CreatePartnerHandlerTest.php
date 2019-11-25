@@ -3,7 +3,7 @@
 
 namespace App\Tests\Small\Component\handler;
 
-use App\Component\Builder;
+use App\Component\builder\Builder;
 use App\Component\handler\CreateHandler;
 use App\Component\viewer\PartnerViewer;
 use App\Component\writer\Writer;

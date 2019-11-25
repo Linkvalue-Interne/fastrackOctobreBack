@@ -1,0 +1,23 @@
+App\Entity\Partner:
+  constraints:
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+  properties:
+    firstName:
+      - NotBlank: ~
+    lastName:
+      - NotBlank: ~
+    job:
+      - NotBlank: ~
+    email:
+      - NotBlank: ~
+      - Email:
+          mode: html5
+    phoneNumber:
+      - NotBlank: ~
+    experience:
+      - NotBlank: ~
+      - Type: integer
+    customer:
+      - NotBlank: ~
+    project:
+      - NotBlank: ~
