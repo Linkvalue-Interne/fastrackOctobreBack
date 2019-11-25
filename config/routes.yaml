@@ -1,5 +1,5 @@
 api_list_partner:
-  path: /api/partner/list
+  path: /api/partner
   controller: App\Controller\PartnerController::list
   methods: GET
 
