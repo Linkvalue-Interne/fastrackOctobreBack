@@ -5,7 +5,7 @@ namespace App\Repository;
 
 use App\Entity\EntityInterface;
 
-interface SaveRepositoryInterface
+interface RepositoryInterface
 {
     /**
      * @param EntityInterface $entity
