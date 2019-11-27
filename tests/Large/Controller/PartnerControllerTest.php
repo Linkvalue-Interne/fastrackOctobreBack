@@ -18,7 +18,7 @@ class PartnerControllerTest extends WebTestCase
 
     public function testList()
     {
-        $this->client->request('GET', '/api/partner/list');
+        $this->client->request('GET', '/api/partner');
 
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertJson($this->client->getResponse()->getContent());
