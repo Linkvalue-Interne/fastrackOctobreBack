@@ -81,9 +81,24 @@ class PartnerControllerTest extends AppTestCase
 
     public function testCreateSuccess()
     {
-        $content = '{"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client","project":"project"}';
+        $content = '{"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client"}';
 
-        $expect = '{"id":6,"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client","project":"project","avatar":"default.jpg"}';
+        $expect = '{"id":6,"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client","project":null,"avatar":"default.jpg"}';
+
+        $this->client->request('POST', '/api/partner', [], [], [], $content);
+
+        $actual = $this->client->getResponse()->getContent();
+
+        $this->saveEntity($actual);
+
+        $this->assertSame($expect, $actual);
+    }
+
+    public function testCreateSuccessWithBoosterCustomer()
+    {
+        $content = '{"firstName":"alex","lastName":"tual","job":"dev","email":"new@link-value.fr","phoneNumber":"0101","experience":10,"customer":"booster","project":"project"}';
+
+        $expect = '{"id":7,"firstName":"alex","lastName":"tual","job":"dev","email":"new@link-value.fr","phoneNumber":"0101","experience":10,"customer":"booster","project":"project","avatar":"default.jpg"}';
 
         $this->client->request('POST', '/api/partner', [], [], [], $content);
 
