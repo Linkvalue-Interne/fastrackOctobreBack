@@ -1,0 +1,83 @@
+App\Entity\Customer:
+  customer_0:
+      name: FTV
+  customer_1:
+      name: M6
+  customer_2:
+      name: Unimédias
+  customer_3:
+      name: Meetic
+  customer_4:
+      name: Enedis
+  customer_5:
+      name: Lizeo
+  customer_6:
+      name: Euronews
+  customer_7:
+      name: Le Livre Scolaire
+  customer_8:
+      name: Arte
+  customer_9:
+      name: Canal +
+  customer_10:
+      name: TF1
+  customer_11:
+      name: Ouicar
+  customer_12:
+      name: Marcel
+  customer_13:
+      name: Yellow La Poste
+  customer_14:
+      name: Pichet
+  customer_15:
+      name: Carrus
+  customer_16:
+      name: Leroy Merlin
+  customer_17:
+      name: Decathlon
+  customer_18:
+      name: La Redoute
+  customer_19:
+      name: Colisweb
+  customer_20:
+      name: Accor
+  customer_21:
+      name: L'Etudiant
+  customer_22:
+      name: Aramis
+  customer_23:
+      name: Oui SNCF
+  customer_24:
+      name: Voyage SNCF
+  customer_25:
+      name: Alltricks
+  customer_26:
+      name: Trigone
+  customer_27:
+      name: Pages Jaunes
+  customer_28:
+      name: Radio France
+  customer_29:
+      name: Megalithe.co
+  customer_30:
+      name: NRJ
+  customer_31:
+      name: Le Monde
+  customer_32:
+      name: Dawex
+  customer_33:
+      name: Mandarine
+  customer_34:
+      name: Kering
+  customer_35:
+      name: Volvo
+  customer_36:
+      name: Société Générale
+  customer_37:
+      name: BNP
+  customer_38:
+      name: Sodexo
+  customer_39:
+      name: Keplr
+  customer_40:
+      name: Booster
