@@ -21,3 +21,8 @@ api_create_partner:
   path: /api/partner
   controller: App\Controller\PartnerController::create
   methods: POST
+
+api_list_customer:
+  path: /api/customer
+  controller: App\Controller\CustomerController::list
+  methods: GET
