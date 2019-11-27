@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Component;
+namespace App\Component\builder;
 
 use App\CustomException\ValidatorException;
 use Symfony\Component\Form\FormInterface;

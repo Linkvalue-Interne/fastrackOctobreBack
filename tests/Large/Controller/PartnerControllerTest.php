@@ -3,11 +3,10 @@
 
 namespace App\Tests\Controller;
 
-use App\CustomException\InvalidArgumentException;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\AppTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-class PartnerControllerTest extends WebTestCase
+class PartnerControllerTest extends AppTestCase
 {
     private $client;
 
@@ -80,12 +79,43 @@ class PartnerControllerTest extends WebTestCase
         $this->assertJson($this->client->getResponse()->getContent());
     }
 
+    public function testCreateSuccess()
+    {
+        $content = '{"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client"}';
+
+        $expect = '{"id":6,"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client","project":null,"avatar":"default.jpg"}';
+
+        $this->client->request('POST', '/api/partner', [], [], [], $content);
+
+        $actual = $this->client->getResponse()->getContent();
+
+        $this->saveEntity($actual);
+
+        $this->assertSame($expect, $actual);
+    }
+
+    public function testCreateSuccessWithBoosterCustomer()
+    {
+        $content = '{"firstName":"alex","lastName":"tual","job":"dev","email":"new@link-value.fr","phoneNumber":"0101","experience":10,"customer":"booster","project":"project"}';
+
+        $expect = '{"id":7,"firstName":"alex","lastName":"tual","job":"dev","email":"new@link-value.fr","phoneNumber":"0101","experience":10,"customer":"booster","project":"project","avatar":"default.jpg"}';
+
+        $this->client->request('POST', '/api/partner', [], [], [], $content);
+
+        $actual = $this->client->getResponse()->getContent();
+
+        $this->saveEntity($actual);
+
+        $this->assertSame($expect, $actual);
+    }
+
     public function testCreateWrongKey()
     {
-        $this->markTestSkipped();
-        $expect = '{"statusCode":400}';
+        $content = '{"badKey":"alex"}';
 
-        $this->client->request('POST', '/api/partner');
+        $expect = '{"status":400,"message":{"firstName":"field is required","lastName":"field is required","job":"field is required","email":"field is required","phoneNumber":"field is required","experience":"field is required","customer":"field is required"}}';
+
+        $this->client->request('POST', '/api/partner', [], [], [], $content);
 
         $this->assertSame($expect, $this->client->getResponse()->getContent());
         $this->assertJson($this->client->getResponse()->getContent());

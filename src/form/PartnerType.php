@@ -23,7 +23,7 @@ class PartnerType extends AbstractType
             ->add('phoneNumber', TextType::class)
             ->add('experience', IntegerType::class)
             ->add('customer', TextType::class)
-            ->add('project', TextType::class)
+            ->add('project', TextType::class, ['required' => false])
         ;
     }
 
