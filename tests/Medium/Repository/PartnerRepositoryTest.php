@@ -9,13 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class PartnerRepositoryTest extends KernelTestCase
 {
-    protected static $kernel;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-        self::$kernel = self::bootKernel();
-    }
+    use RepositoryTraitTest;
 
     public function testRepositoryTrait()
     {
@@ -38,16 +32,5 @@ class PartnerRepositoryTest extends KernelTestCase
         $this->assertSame($entity, $actual);
 
         $this->initialState($actual);
-    }
-
-    public function initialState($entity)
-    {
-        $entityManager = self::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-        $entity  = $entityManager->merge($entity);
-        $entityManager->remove($entity);
-        $entityManager->flush();
     }
 }
