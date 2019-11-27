@@ -5,7 +5,7 @@ namespace App\Repository;
 
 use App\Entity\EntityInterface;
 
-trait SaveEntityTrait
+trait RepositoryTrait
 {
     // Set in repository construct
     private $registry;
