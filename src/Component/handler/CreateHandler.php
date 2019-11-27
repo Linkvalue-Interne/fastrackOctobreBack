@@ -6,8 +6,8 @@ namespace App\Component\handler;
 use App\Component\builder\Builder;
 use App\Component\viewer\PartnerViewer;
 use App\Component\writer\Writer;
+use App\CustomException\FormRequiredException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class CreateHandler implements HandlerInterface
 {
@@ -30,11 +30,11 @@ class CreateHandler implements HandlerInterface
     /**
      * @param Request $request
      * @return array
+     * @throws FormRequiredException
      */
     public function handle(Request $request): array
     {
         $data = json_decode($request->getContent(), true);
-        $form = $data['data']['form'];
 
         $keys = [
             'firstName',
@@ -44,12 +44,20 @@ class CreateHandler implements HandlerInterface
             'phoneNumber',
             'experience',
             'customer',
-            'project',
         ];
 
-        if (!array_diff_key(array_flip($keys), $form)) {
-            return $this->viewer->formatShow($this->writer->savePartner($this->builder->buildWithForm($form)));
+        $arrayDiff = array_diff_key(array_flip($keys), $data);
+
+        if (isset($data['customer'])) {
+            if ('booster' == $data['customer'] && empty($data['project'])) {
+                $arrayDiff ['project'] = 'project';
+            }
         }
-        return ['statusCode' => Response::HTTP_BAD_REQUEST];
+
+        if (!empty($arrayDiff)) {
+            throw new FormRequiredException($arrayDiff);
+        }
+
+        return $this->viewer->formatShow($this->writer->savePartner($this->builder->buildWithForm($data)));
     }
 }

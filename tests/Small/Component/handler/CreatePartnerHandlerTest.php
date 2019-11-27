@@ -7,10 +7,10 @@ use App\Component\builder\Builder;
 use App\Component\handler\CreateHandler;
 use App\Component\viewer\PartnerViewer;
 use App\Component\writer\Writer;
+use App\CustomException\FormRequiredException;
 use App\Entity\Partner;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class CreatePartnerHandlerTest extends TestCase
 {
@@ -42,18 +42,13 @@ class CreatePartnerHandlerTest extends TestCase
         $partner = $this->createMock(Partner::class);
 
         $data = [
-            "data" => [
-                "form" => [
-                    "firstName" => "Dark",
-                    "lastName" => "Vador",
-                    "job" => "Sith",
-                    "email" => "dark.vador@link-value.fr",
-                    "phoneNumber" => "01 02 03 04 05",
-                    "experience" => 20,
-                    "customer" => "Empire",
-                    "project" => "Death Stars",
-                ]
-            ]
+            "firstName" => "Dark",
+            "lastName" => "Vador",
+            "job" => "Sith",
+            "email" => "dark.vador@link-value.fr",
+            "phoneNumber" => "01 02 03 04 05",
+            "experience" => 20,
+            "customer" => "Empire",
         ];
 
         $dataJson = json_encode($data, true);
@@ -61,7 +56,7 @@ class CreatePartnerHandlerTest extends TestCase
         $this->builder
             ->expects($this->once())
             ->method('buildWithForm')
-            ->with($data['data']['form'])
+            ->with($data)
             ->willReturn($partner);
 
         $this->writer
@@ -74,7 +69,7 @@ class CreatePartnerHandlerTest extends TestCase
             ->expects($this->once())
             ->method('formatShow')
             ->with($partner)
-            ->willReturn($data['data']['form']);
+            ->willReturn($data);
 
         $this->request
             ->expects($this->once())
@@ -83,18 +78,13 @@ class CreatePartnerHandlerTest extends TestCase
 
         $actual = $this->init()->handle($this->request);
 
-        $this->assertSame($data['data']['form'], $actual);
+        $this->assertSame($data, $actual);
     }
 
     public function testReturnBadRequestHandle()
     {
-        $data = [
-            "data" => [
-                "form" => [
-                    'fakeAttribute' => 'Dark',
-                ]
-            ]
-        ];
+        $data = ['fakeAttribute' => 'Dark'];
+        $this->expectException(FormRequiredException::class);
 
         $dataJson = json_encode($data, true);
 
@@ -105,6 +95,6 @@ class CreatePartnerHandlerTest extends TestCase
 
         $actual = $this->init()->handle($this->request);
 
-        $this->assertSame(['statusCode' => Response::HTTP_BAD_REQUEST], $actual);
+        $this->assertSame($this->getExpectedException(), $actual);
     }
 }
