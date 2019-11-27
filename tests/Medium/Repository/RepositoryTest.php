@@ -10,21 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class RepositoryTest extends KernelTestCase
 {
-    private $repository;
-
-    private $entityManager;
+    protected static $kernel;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->repository = $this->bootKernel()
-            ->getContainer()
-            ->get(PartnerRepository::class);
-
-        $this->entityManager = $this->bootKernel()
-            ->getContainer()
-            ->get('doctrine')
-            ->getManager();
+        self::$kernel = self::bootKernel();
     }
 
     public function testRepositoryTrait()
@@ -42,7 +33,8 @@ class RepositoryTest extends KernelTestCase
             ->setProject('project')
         ;
 
-        $actual = $this->repository->save($entity);
+        $actual = self::$kernel->getContainer()
+            ->get(PartnerRepository::class)->save($entity);
 
         $this->assertSame($entity, $actual);
 
@@ -51,8 +43,12 @@ class RepositoryTest extends KernelTestCase
 
     public function initialState($entity)
     {
-        $entity  = $this->entityManager->merge($entity);
-        $this->entityManager->remove($entity);
-        $this->entityManager->flush();
+        $entityManager = self::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+
+        $entity  = $entityManager->merge($entity);
+        $entityManager->remove($entity);
+        $entityManager->flush();
     }
 }
