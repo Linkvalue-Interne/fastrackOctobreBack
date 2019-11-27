@@ -3,7 +3,7 @@
 
 namespace App\Tests\Small\Component;
 
-use App\Component\Builder;
+use App\Component\builder\Builder;
 use App\Entity\Partner;
 use App\form\PartnerType;
 use Symfony\Component\Form\Test\TypeTestCase;

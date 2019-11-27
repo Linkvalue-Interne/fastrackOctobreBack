@@ -19,5 +19,3 @@ App\Entity\Partner:
       - Type: integer
     customer:
       - NotBlank: ~
-    project:
-      - NotBlank: ~

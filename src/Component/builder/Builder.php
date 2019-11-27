@@ -3,7 +3,6 @@
 
 namespace App\Component\builder;
 
-use App\Component\HandleErrorFormTrait;
 use App\Entity\Partner;
 use App\form\PartnerType;
 use Symfony\Component\Form\FormFactoryInterface;

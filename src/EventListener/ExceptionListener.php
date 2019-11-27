@@ -3,6 +3,7 @@
 
 namespace App\EventListener;
 
+use App\CustomException\FormRequiredException;
 use App\CustomException\InvalidArgumentException;
 use App\CustomException\ValidatorException;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,7 +19,7 @@ class ExceptionListener
         switch ($exception) {
             case $exception instanceof ValidatorException:
                 $errors = [
-                    'error' => $exception->getCode(),
+                    'status' => $exception->getCode(),
                     'message' => $exception->getErrors(),
                     ]
                 ;
@@ -27,6 +28,13 @@ class ExceptionListener
                 $errors = [
                     'status' => $exception->getCode(),
                     'message' => $exception->getMessage(),
+                    ]
+                ;
+                break;
+            case $exception instanceof FormRequiredException:
+                $errors = [
+                    'status' => $exception->getCode(),
+                    'message' => $exception->formatMessage(),
                     ]
                 ;
                 break;
