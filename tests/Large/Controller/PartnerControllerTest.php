@@ -4,7 +4,6 @@
 namespace App\Tests\Controller;
 
 use App\Tests\AppTestCase;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 
 class PartnerControllerTest extends AppTestCase
