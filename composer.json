@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
+        "beberlei/assert": "^3.2",
         "doctrine/doctrine-fixtures-bundle": "^3.2",
         "gedmo/doctrine-extensions": "^2.4",
         "hautelook/alice-bundle": "^2.5",

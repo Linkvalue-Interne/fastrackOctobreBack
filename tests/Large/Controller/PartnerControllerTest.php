@@ -113,7 +113,7 @@ class PartnerControllerTest extends AppTestCase
     {
         $content = '{"badKey":"alex"}';
 
-        $expect = '{"status":400,"message":{"firstName":"field is required","lastName":"field is required","job":"field is required","email":"field is required","phoneNumber":"field is required","experience":"field is required","customer":"field is required"}}';
+        $expect = '{"status":400,"message":"the element with key \u0022firstName\u0022 is required"}';
 
         $this->client->request('POST', '/api/partner', [], [], [], $content);
 
