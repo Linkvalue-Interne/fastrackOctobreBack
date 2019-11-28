@@ -7,7 +7,6 @@ use App\Component\builder\Builder;
 use App\Component\handler\CreateHandler;
 use App\Component\viewer\PartnerViewer;
 use App\Component\writer\Writer;
-use App\CustomException\FormRequiredException;
 use App\Entity\Partner;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -84,7 +83,7 @@ class CreatePartnerHandlerTest extends TestCase
     public function testReturnBadRequestHandle()
     {
         $data = ['fakeAttribute' => 'Dark'];
-        $this->expectException(FormRequiredException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         $dataJson = json_encode($data, true);
 
