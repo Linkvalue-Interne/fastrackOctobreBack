@@ -9,6 +9,7 @@ use App\Component\viewer\PartnerViewer;
 use App\Component\writer\Writer;
 use App\Entity\Partner;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class CreatePartnerHandlerTest extends TestCase
@@ -21,6 +22,8 @@ class CreatePartnerHandlerTest extends TestCase
 
     private $request;
 
+    private $logger;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -29,11 +32,12 @@ class CreatePartnerHandlerTest extends TestCase
         $this->viewer = $this->createMock(PartnerViewer::class);
         $this->builder = $this->createMock(Builder::class);
         $this->request = $this->createMock(Request::class);
+        $this->logger = $this->createMock(LoggerInterface::class);
     }
 
     public function init()
     {
-        return new CreateHandler($this->writer, $this->viewer, $this->builder);
+        return new CreateHandler($this->writer, $this->viewer, $this->builder, $this->logger);
     }
 
     public function testReturnSuccessHandle()
@@ -71,7 +75,7 @@ class CreatePartnerHandlerTest extends TestCase
             ->willReturn($data);
 
         $this->request
-            ->expects($this->once())
+            ->expects($this->any())
             ->method('getContent')
             ->willReturn($dataJson);
 
@@ -88,7 +92,7 @@ class CreatePartnerHandlerTest extends TestCase
         $dataJson = json_encode($data, true);
 
         $this->request
-            ->expects($this->once())
+            ->expects($this->any())
             ->method('getContent')
             ->willReturn($dataJson);
 
