@@ -8,6 +8,7 @@ use App\CustomException\ValidatorException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ExceptionListener
 {
@@ -38,8 +39,15 @@ class ExceptionListener
                     ]
                 ;
                 break;
+            case $exception instanceof NotFoundHttpException:
+                $errors = [
+                    'status' => Response::HTTP_BAD_REQUEST,
+                    'message' => $exception->getMessage(),
+                    ]
+                ;
+                break;
         }
 
-        $event->setResponse(new JsonResponse($errors, Response::HTTP_BAD_REQUEST));
+        $event->setResponse(new JsonResponse($errors, $errors['status']));
     }
 }

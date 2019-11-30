@@ -25,7 +25,7 @@ class PartnerRetrieverTest extends TestCase
         return new PartnerRetriever($this->repository);
     }
 
-    public function testAllPartnerReturnData()
+    public function testAllPartnerReturnDataWithoutArgument()
     {
         $expect = [$this->partner, $this->partner, $this->partner];
 
@@ -35,32 +35,37 @@ class PartnerRetrieverTest extends TestCase
             ->with(['isActive' => true])
             ->willReturn($expect);
 
-        $this->assertCount(3, $this->init()->getAll());
+        $this->assertCount(3, $this->init()->getAll(null));
     }
 
-    public function testAllPartnerReturnArray()
+    public function testAllPartnerReturnDataWithAZArgument()
     {
         $expect = [$this->partner, $this->partner, $this->partner];
 
+        $filter = 'ASC';
+
         $this->repository
             ->expects($this->once())
             ->method('findBy')
-            ->with(['isActive' => true])
+            ->with(['isActive' => true], ['firstName' => $filter])
             ->willReturn($expect);
 
-        $this->assertIsArray($this->init()->getAll());
+        $this->assertSame($expect, $this->init()->getAll($filter));
     }
 
-    public function testAllPartnerReturnEmptyArray()
+    public function testAllPartnerReturnDataWithZAArgument()
     {
-        $expect = [];
+        $expect = [$this->partner, $this->partner, $this->partner];
+
+        $filter = 'DESC';
 
         $this->repository
             ->expects($this->once())
             ->method('findBy')
+            ->with(['isActive' => true], ['firstName' => $filter])
             ->willReturn($expect);
 
-        $this->assertEmpty($this->init()->getAll());
+        $this->assertSame($expect, $this->init()->getAll($filter));
     }
 
     public function testOnePartnerReturnSuccess()

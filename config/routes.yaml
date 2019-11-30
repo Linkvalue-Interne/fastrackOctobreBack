@@ -1,7 +1,11 @@
 api_list_partner:
-  path: /api/partner
+  path: /api/partner/{filter}
   controller: App\Controller\PartnerController::list
   methods: GET
+  defaults:
+    filter: null
+  requirements:
+    filter: 'asc|desc'
 
 api_show_partner:
   path: /api/partner/{id}
