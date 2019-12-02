@@ -24,5 +24,4 @@ class CategoryTest extends TestCase implements GetterAndSetterInterface
             ['skillId', 1],
         ];
     }
-
 }
