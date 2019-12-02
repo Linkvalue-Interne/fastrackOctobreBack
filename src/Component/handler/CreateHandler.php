@@ -52,10 +52,5 @@ class CreateHandler implements HandlerInterface
         Assertion::keyExists($data, 'email', $message);
         Assertion::keyExists($data, 'phoneNumber', $message);
         Assertion::keyExists($data, 'experience', $message);
-        Assertion::keyExists($data, 'customer', $message);
-
-        if (isset($data['customer']) && 'booster' == $data['customer']) {
-            Assertion::keyExists($data, 'project', $message);
-        }
     }
 }
