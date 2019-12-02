@@ -12,11 +12,17 @@ class AppTestCase extends WebTestCase
 {
     protected static $entities = [];
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        self::bootKernel();
+    }
+
     public function saveEntity($JsonData)
     {
         $data = json_decode($JsonData, true);
 
-        $entity = self::bootKernel()->getContainer()->get(PartnerRepository::class)->find($data['id']);
+        $entity = self::$kernel->getContainer()->get(PartnerRepository::class)->find($data['id']);
 
         self::$entities[] = $entity;
     }
@@ -24,7 +30,7 @@ class AppTestCase extends WebTestCase
     protected static function cleanUpDataBase()
     {
         /** @var  EntityManager $entityManager */
-        $entityManager = self::bootKernel()->getContainer()->get('doctrine')->getManager();
+        $entityManager = self::$kernel->getContainer()->get('doctrine')->getManager();
 
         foreach (self::$entities as $entity) {
             $entityAttached = $entityManager->merge($entity);

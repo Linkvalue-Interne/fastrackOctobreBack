@@ -12,6 +12,7 @@ class PartnerControllerTest extends AppTestCase
 
     protected function setUp(): void
     {
+        parent::setUp();
         $this->client = $this->createClient();
     }
 
