@@ -89,4 +89,11 @@ class PartnerRetrieverTest extends TestCase
 
         $this->assertSame([], $this->init()->getOne($id));
     }
+
+    public function testSearch()
+    {
+        $actual = $this->init()->search('Xavier');
+
+        dd($actual);
+    }
 }

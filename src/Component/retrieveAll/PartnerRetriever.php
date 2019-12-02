@@ -32,4 +32,17 @@ class PartnerRetriever
     {
         return $this->repo->findOneBy(['id' => $id, 'isActive' => true]) ?: [];
     }
+
+    public function search(string $key)
+    {
+        $qb = $this->repo
+            ->createQueryBuilder('p')
+            ->where('p.lastName = :key')
+            ->setParameter('key', $key)
+            ->orderBy('p.lastName', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
 }
