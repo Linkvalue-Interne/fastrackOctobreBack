@@ -1,0 +1,24 @@
+App\Entity\Category:
+  type: entity
+  table: category
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      lenght: 255
+    skillId:
+      type: integer
+    createdAt:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updatedAt:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update
