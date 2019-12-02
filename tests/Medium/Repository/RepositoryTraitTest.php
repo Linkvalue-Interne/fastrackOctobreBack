@@ -10,7 +10,7 @@ trait RepositoryTraitTest
     public function setUp(): void
     {
         parent::setUp();
-        self::$kernel = self::bootKernel();
+        self::bootKernel();
     }
 
     public function initialState($entity)
