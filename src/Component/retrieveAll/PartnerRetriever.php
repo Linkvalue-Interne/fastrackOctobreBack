@@ -19,7 +19,7 @@ class PartnerRetriever
     /**
      * @return array
      */
-    public function getAll()
+    public function getAll(): array
     {
         return $this->repo->findBy(['isActive' => true], ['id' => 'DESC']) ?: [];
     }
