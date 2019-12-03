@@ -27,6 +27,7 @@ App\Entity\Partner:
     customer:
       type: string
       lenght: 255
+      nullable: true
     project:
       type: string
       lenght: 255

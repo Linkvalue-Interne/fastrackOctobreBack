@@ -17,5 +17,3 @@ App\Entity\Partner:
     experience:
       - NotBlank: ~
       - Type: integer
-    customer:
-      - NotBlank: ~
