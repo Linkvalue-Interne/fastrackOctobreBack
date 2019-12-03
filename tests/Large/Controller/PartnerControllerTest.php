@@ -23,10 +23,10 @@ class PartnerControllerTest extends AppTestCase
         $this->assertJson($this->client->getResponse()->getContent());
 
         $dataToCompare = [
-                'id' => 1,
-                'firstName' => 'Charles',
-                'lastName' => 'Xavier',
-                'job' => 'Professeur',
+                'id' => 4,
+                'firstName' => 'Bruce',
+                'lastName' => 'Wayne',
+                'job' => 'Milliardaire',
                 'avatar' => 'cat4.jpg',
             ]
         ;
