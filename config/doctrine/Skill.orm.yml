@@ -1,0 +1,25 @@
+App\Entity\Skill:
+  type: entity
+  table: skill
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      lenght: 255
+    icon:
+      type: string
+      lenght: 255
+    createdAt:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updatedAt:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update

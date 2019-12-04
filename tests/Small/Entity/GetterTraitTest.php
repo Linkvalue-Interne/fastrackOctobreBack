@@ -3,38 +3,39 @@
 
 namespace App\Tests\Small\Entity;
 
+use Symfony\Component\PropertyAccess\PropertyAccess;
+
 trait GetterTraitTest
 {
     private $object;
 
-    /**
-     * @param string $property
-     * @param $value
-     * @throws \ReflectionException
-     */
-    public function reflectionProperty(string $property, $value): void
-    {
-        $this->object = $this->init();
-        $reflectionObject = new \ReflectionClass($this->object);
+    /** @var \Symfony\Component\PropertyAccess\PropertyAccessor  */
+    private $propertyAccessor;
 
-        $prop = $reflectionObject->getProperty($property);
-        $prop->setAccessible(true);
-        $prop->setValue($this->object, $value);
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->propertyAccessor = PropertyAccess::createPropertyAccessor();
+        $this->object = $this->init();
     }
 
     /**
-     * @dataProvider providerProperty
      * @param string $property
      * @param $value
-     * @throws \ReflectionException
+     * @dataProvider providerProperty
      */
     public function testGetters(string $property, $value): void
     {
-        $this->reflectionProperty($property, $value);
+        if (method_exists($this->object, 'get'.$property)) {
+            $this->propertyAccessor->setValue($this->object, $property, $value);
 
-        $getter = $this->getterFormat($property);
+            $actual = $this->propertyAccessor->getValue($this->object, $property);
 
-        $this->assertSame($value, $this->object->$getter());
+            $this->assertSame($value, $actual);
+        }
+//        if (method_exists($this->object, 'add'.ucfirst($property))) {
+//            die('ok');
+//        }
     }
 
     /**
@@ -43,13 +44,10 @@ trait GetterTraitTest
      */
     public function testGetterReturnNull(string $property): void
     {
-        $getter = $this->getterFormat($property);
+        if (method_exists($this->object, 'get'.$property)) {
+            $actual = $this->propertyAccessor->getValue($this->object, $property);
 
-        $this->assertSame(null, $this->init()->$getter());
-    }
-
-    private function getterFormat(string $property): string
-    {
-        return $getter = 'get'.ucfirst($property);
+            $this->assertSame(null, $actual);
+        }
     }
 }
