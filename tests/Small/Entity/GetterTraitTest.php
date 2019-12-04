@@ -33,9 +33,9 @@ trait GetterTraitTest
 
             $this->assertSame($value, $actual);
         }
-//        if (method_exists($this->object, 'add'.ucfirst($property))) {
-//            die('ok');
-//        }
+        if (method_exists($this->object, 'add'.ucfirst($property))) {
+            die('ok');
+        }
     }
 
     /**
