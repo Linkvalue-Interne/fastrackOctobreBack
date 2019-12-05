@@ -17,10 +17,15 @@ class PartnerRetriever
     }
 
     /**
+     * @param string $filter
      * @return array
      */
-    public function getAll(): array
+    public function getAll(?string $filter)
     {
+        if (!empty($filter)) {
+            return $this->repo->findBy(['isActive' => true], ['firstName' => strtoupper($filter)]) ?: [];
+        }
+
         return $this->repo->findBy(['isActive' => true], ['id' => 'DESC']) ?: [];
     }
 

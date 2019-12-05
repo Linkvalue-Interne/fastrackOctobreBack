@@ -27,7 +27,7 @@ class ListPartnerHandler implements HandlerInterface
      */
     public function handle(Request $request): array
     {
-        $listPartner = $this->partnerRetriever->getAll();
+        $listPartner = $this->partnerRetriever->getAll($request->get('filter'));
 
         return $listPartner ? $this->partnerViewer->formatList($listPartner) : $listPartner;
     }
