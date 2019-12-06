@@ -3,7 +3,7 @@
 
 namespace App\Entity;
 
-class Skill implements EntityInterface
+class Skill implements EntityInterface, \JsonSerializable
 {
     use EntityTrait;
 
@@ -47,5 +47,14 @@ class Skill implements EntityInterface
     {
         $this->icon = $icon;
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'icon' => $this->getIcon(),
+        ];
     }
 }
