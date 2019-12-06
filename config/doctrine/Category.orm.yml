@@ -10,13 +10,16 @@ App\Entity\Category:
     name:
       type: string
       lenght: 255
+    parentId:
+      type: integer
+      nullable: true
     createdAt:
       type: datetime
       gedmo:
         timestampable:
           on: create
     updatedAt:
-      type: datetime
+      type: datetimqe
       gedmo:
         timestampable:
           on: update
@@ -26,15 +29,8 @@ App\Entity\Category:
       joinTable:
         name: skills_categories
         joinColumns:
-          skill_id:
-            referencedColumnName: id
-        inverseJoinColumns:
           category_id:
             referencedColumnName: id
-  oneToOne:
-    parentId:
-      targetEntity: Category
-      inversedBy: parentId
-      joinColumn:
-        name: parent_id
-        referencedColumnName: id
+        inverseJoinColumns:
+          skill_id:
+            referencedColumnName: id
