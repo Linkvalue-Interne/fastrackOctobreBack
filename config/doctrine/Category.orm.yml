@@ -10,19 +10,19 @@ App\Entity\Category:
     name:
       type: string
       lenght: 255
-    parentId:
-      type: integer
-      nullable: true
     createdAt:
       type: datetime
       gedmo:
         timestampable:
           on: create
     updatedAt:
-      type: datetimqe
+      type: datetime
       gedmo:
         timestampable:
           on: update
+    parentId:
+      type: integer
+      nullable: true
   manyToMany:
     skills:
       targetEntity: Skill
