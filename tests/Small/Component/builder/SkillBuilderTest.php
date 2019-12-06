@@ -68,7 +68,7 @@ class SkillBuilderTest extends TestCase
                     'id' => 1,
                     'name' => null,
                     'subCategory' => [],
-                    'skills' => null,
+                    'skills' => $this->arrayCollection,
                 ],
             2 => [
                     'id' => 2,
@@ -78,10 +78,10 @@ class SkillBuilderTest extends TestCase
                             "id" => 3,
                             "name" => null,
                             "subCategory" => [],
-                            "skills" => null,
+                            "skills" => $this->arrayCollection,
                         ],
                     ],
-                    'skills' => null,
+                    'skills' => $this->arrayCollection,
                 ],
         ];
 
