@@ -37,7 +37,6 @@ class SkillBuilderTest extends TestCase
             ->method('getSkills')
             ->willReturn($this->arrayCollection);
 
-
         $cat2 = $this->createMock(Category::class);
         $cat2
             ->expects($this->any())
@@ -69,7 +68,7 @@ class SkillBuilderTest extends TestCase
                     'id' => 1,
                     'name' => null,
                     'subCategory' => [],
-                    'skills' => $this->arrayCollection,
+                    'skills' => null,
                 ],
             2 => [
                     'id' => 2,
@@ -79,10 +78,10 @@ class SkillBuilderTest extends TestCase
                             "id" => 3,
                             "name" => null,
                             "subCategory" => [],
-                            "skills" => $this->arrayCollection,
+                            "skills" => null,
                         ],
                     ],
-                    'skills' => $this->arrayCollection,
+                    'skills' => null,
                 ],
         ];
 
