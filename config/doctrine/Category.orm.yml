@@ -1,0 +1,36 @@
+App\Entity\Category:
+  type: entity
+  table: category
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      lenght: 255
+    createdAt:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updatedAt:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update
+    parentId:
+      type: integer
+      nullable: true
+  manyToMany:
+    skills:
+      targetEntity: Skill
+      joinTable:
+        name: skills_categories
+        joinColumns:
+          category_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          skill_id:
+            referencedColumnName: id
