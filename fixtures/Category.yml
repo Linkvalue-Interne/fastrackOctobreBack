@@ -1,0 +1,63 @@
+App\Entity\Category:
+  category_1:
+    name: Back
+    skills:
+      - '@skill_1'
+      - '@skill_2'
+      - '@skill_3'
+      - '@skill_4'
+      - '@skill_5'
+      - '@skill_6'
+      - '@skill_7'
+      - '@skill_8'
+      - '@skill_9'
+      - '@skill_10'
+      - '@skill_11'
+      - '@skill_12'
+      - '@skill_13'
+      - '@skill_14'
+      - '@skill_15'
+  category_2:
+    name: Front
+    skills:
+      - '@skill_16'
+      - '@skill_17'
+      - '@skill_18'
+      - '@skill_19'
+      - '@skill_20'
+      - '@skill_21'
+      - '@skill_22'
+      - '@skill_23'
+      - '@skill_24'
+      - '@skill_25'
+      - '@skill_26'
+  category_3:
+    name: Mobile
+    skills:
+      - '@skill_39'
+      - '@skill_27'
+      - '@skill_28'
+      - '@skill_29'
+      - '@skill_30'
+      - '@skill_31'
+      - '@skill_32'
+      - '@skill_33'
+  category_4:
+    name: Android
+    parentId: 3
+    skills:
+      - '@skill_34'
+      - '@skill_35'
+      - '@skill_36'
+      - '@skill_37'
+      - '@skill_38'
+  category_5:
+    name: IOS
+    parentId: 3
+    skills:
+      - '@skill_40'
+      - '@skill_41'
+      - '@skill_42'
+      - '@skill_43'
+      - '@skill_44'
+

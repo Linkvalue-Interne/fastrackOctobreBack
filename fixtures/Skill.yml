@@ -1,0 +1,334 @@
+App\Entity\Skill:
+  skill_1:
+    name: PHP
+    icon: php.jpg
+  skill_2:
+    name: Symfony
+    icon: symfony.jpg
+  skill_3:
+    name: Laravel
+    icon: laravel.jpg
+  skill_4:
+    name: NodeJs
+    icon: nodejs.jpg
+  skill_5:
+    name: Go
+    icon: go.jpg
+  skill_6:
+    name: Java
+    icon: java.jpg
+  skill_7:
+    name: Ruby
+    icon: ruby.jpg
+  skill_8:
+    name: Python
+    icon: python.jpg
+  skill_9:
+    name: Scala
+    icon: scala.jpg
+  skill_10:
+    name: Rust
+    icon: rust.jpg
+  skill_11:
+    name: Tests
+    icon: tests.jpg
+  skill_12:
+    name: Lead
+    icon: lead.jpg
+  skill_13:
+    name: Archi
+    icon: archi.jpg
+  skill_14:
+    name: SSR
+    icon: ssr.jpg
+  skill_15:
+    name: GraphQL
+    icon: graphql.jpg
+  skill_16:
+    name: HTML/CSS
+    icon: html-css.jpg
+  skill_17:
+    name: JS
+    icon: js.jpg
+  skill_18:
+    name: Typescript
+    icon: typescript.jpg
+  skill_19:
+    name: Flow
+    icon: flow.jpg
+  skill_20:
+    name: ReactJS
+    icon: reactjs.jpg
+  skill_21:
+    name: VueJS
+    icon: vuejs.jpg
+  skill_22:
+    name: Angular
+    icon: angular.jpg
+  skill_23:
+    name: ElectronJS
+    icon: electronjs.jpg
+  skill_24:
+    name: Archi MVP
+    icon: archimvp.jpg
+  skill_25:
+    name: Archi MVVM
+    icon: archimvvm.jpg
+  skill_26:
+    name: Archi VIPER
+    icon: archiviper.jpg
+  skill_27:
+    name: Bitraise/Fastlane
+    icon: bitraise-fastlane.jpg
+  skill_28:
+    name: BDD PouchDB
+    icon: bdd-pouch-DB.jpgs
+  skill_29:
+    name: BDD Realm / Room (An)
+    icon: bdd-realm-room.jpg
+  skill_30:
+    name: Kotlin
+    icon: kotlin.jpg
+  skill_31:
+    name: Android Studio
+    icon: android-studio.jpg
+  skill_32:
+    name: Test Roboelectric
+    icon: test-roboelectric.jpg
+  skill_33:
+    name: Test Espresso
+    icon: test-espresso.jpg
+  skill_34:
+    name: Archi MVC
+    icon: archimvc.jpg
+  skill_35:
+    name: Objective C
+    icon: objective-c.jpg
+  skill_36:
+    name: Swift
+    icon: swift.jpg
+  skill_37:
+    name: Swift serveur
+    icon: swift-serveur.jpg
+  skill_38:
+    name: Xcode
+    icon: xcode.jpg
+  skill_39:
+    name: Ionic
+    icon: ionic.jpg
+  skill_40:
+    name: Flutter
+    icon: flutter.jpg
+  skill_41:
+    name: React Native
+    icon: react-native.jpg
+  skill_42:
+    name: Cordova
+    icon: cordova.jpg
+  skill_43:
+    name: Xamarin
+    icon: xamarin.jpg
+  skill_44:
+    name: Sysadmi
+    icon: sysadmi.jpg
+  skill_45:
+    name: Devops
+    icon: devops.jpg
+  skill_46:
+    name: Sécurité
+    icon: securite.jpg
+  skill_47:
+    name: Perl
+    icon: perl.jpg
+  skill_48:
+    name: Ruby
+    icon: ruby.jpg
+  skill_49:
+    name: Shell/Bash
+    icon: shell-bash.jpg
+  skill_50:
+    name: AWS
+    icon: aws.jpg
+  skill_51:
+    name: Google Cloud
+    icon: google-cloud.jpg
+  skill_52:
+    name: Microsoft azure
+    icon: microsoft-azure.jpg
+  skill_53:
+    name: Jenkins
+    icon: jenkins.jpg
+  skill_54:
+    name: Gitlab CI
+    icon: gitlab-ci.jpg
+  skill_55:
+    name: Circle CI
+    icon: circle-ci.jpg
+  skill_56:
+    name: Concourse
+    icon: concourse.jpg
+  skill_57:
+    name: Travis
+    icon: travis.jpg
+  skill_58:
+    name: Docker
+    icon: docker.jpg
+  skill_59:
+    name: LXC
+    icon: lxc.jpg
+  skill_60:
+    name: Kubernetes
+    icon: kubernetes.jpg
+  skill_61:
+    name: Vagrant
+    icon: vagrant.jpg
+  skill_62:
+    name: Vmware
+    icon: Vmware.jpg
+  skill_63:
+    name: KVM
+    icon: kvm.jpg
+  skill_64:
+    name: Nagios
+    icon: nagios.jpg
+  skill_65:
+    name: ELK
+    icon: elk.jpg
+  skill_66:
+    name: Prometheus
+    icon: prometheus.jpg
+  skill_67:
+    name: Puppet
+    icon: puppet.jpg
+  skill_68:
+    name: Ansible
+    icon: ansible.jpg
+  skill_69:
+    name: Chef
+    icon: chef.jpg
+  skill_70:
+    name: MySQL / MariaDB
+    icon: msyql-mariadb.jpg
+  skill_71:
+    name: PostgreSQL
+    icon: postgre-sql.jpg
+  skill_72:
+    name: Oracle
+    icon: oracle.jpg
+  skill_73:
+    name: Redshift
+    icon: redshift.jpg
+  skill_74:
+    name: SQL Server
+    icon: sql-server.jpg
+  skill_75:
+    name: MongoDB
+    icon: mongo-db.jpg
+  skill_76:
+    name: Redis
+    icon: redis.jpg
+  skill_77:
+    name: Cassandra / Dynamo
+    icon: cassandra-dynamo.jpg
+  skill_78:
+    name: Elastic search
+    icon: elastic-search.jpg
+  skill_79:
+    name: Machine Learning
+    icon: machine-learning.jpg
+  skill_80:
+    name: Deep Learning
+    icon: deep-learning.jpg
+  skill_81:
+    name: Random Forest
+    icon: random-forest.jpg
+  skill_82:
+    name: Modèle d'intention
+    icon: modele-d-intention.jpg
+  skill_83:
+    name: Cython
+    icon: cython.jpg
+  skill_84:
+    name: Scikit-learn
+    icon: scikit-learn.jpg
+  skill_85:
+    name: Pandas
+    icon: pandas.jpg
+  skill_86:
+    name: Numpy
+    icon: numpy.jpg
+  skill_87:
+    name: Tensorflow
+    icon: tensorflow.jpg
+  skill_88:
+    name: Pytorch
+    icon: pytorch.jpg
+  skill_89:
+    name: Keras
+    icon: keras.jpg
+  skill_90:
+    name: MLlib
+    icon: mllib.jpg
+  skill_91:
+    name: H20
+    icon: h20.jpg
+  skill_92:
+    name: Spark
+    icon: spark.jpg
+  skill_93:
+    name: Inpala
+    icon: inpala.jpg
+  skill_94:
+    name: Hyve
+    icon: hyve.jpg
+  skill_95:
+    name: MapReduce
+    icon: mapReduce.jpg
+  skill_96:
+    name: Yarn
+    icon: yarn.jpg
+  skill_97:
+    name: HDFS
+    icon: hdfs.jpg
+  skill_98:
+    name: Kafka
+    icon: kafka.jpg
+  skill_99:
+    name: Talend
+    icon: talend.jpg
+  skill_100:
+    name: Apache Nifi
+    icon: apache-nifi.jpg
+  skill_101:
+    name: Storm
+    icon: storm.jpg
+  skill_102:
+    name: Spark streaming
+    icon: spark-streaming.jpg
+  skill_103:
+    name: Solr
+    icon: solr.jpg
+  skill_104:
+    name: Lib unitest
+    icon: lib-unitest.jpg
+  skill_105:
+    name: Gestion de projet
+    icon: gestion-de-projet.jpg
+  skill_106:
+    name: Agilité
+    icon: agilite.jpg
+  skill_107:
+    name: UX/UI
+    icon: ux-ui.jpg
+  skill_108:
+    name: TDD
+    icon: tdd.jpg
+  skill_109:
+    name: DDD
+    icon: ddd.jpg
+  skill_110:
+    name: Git
+    icon: git.jpg
+  skill_111:
+    name: Gitlab/Github/Bitbucket
+    icon: gitlab-github-bitbucket.jpg
