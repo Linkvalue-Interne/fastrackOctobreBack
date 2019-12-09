@@ -3,7 +3,7 @@
 
 namespace App\Tests\Small\Component;
 
-use App\Component\builder\Builder;
+use App\Component\builder\PartnerBuilder;
 use App\Entity\Partner;
 use App\form\PartnerType;
 use Symfony\Component\Form\Test\TypeTestCase;
@@ -12,7 +12,7 @@ class PartnerTypeTest extends TypeTestCase
 {
     public function init()
     {
-        return new Builder($this->factory);
+        return new PartnerBuilder($this->factory);
     }
 
     public function testPartnerType()

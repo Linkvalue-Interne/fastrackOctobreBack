@@ -3,13 +3,12 @@
 
 namespace App\Tests\Small\Component\handler;
 
-use App\Component\builder\Builder;
-use App\Component\handler\CreateHandler;
+use App\Component\builder\PartnerBuilder;
+use App\Component\handler\CreatePartnerHandler;
 use App\Component\viewer\PartnerViewer;
 use App\Component\writer\Writer;
 use App\Entity\Partner;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class CreatePartnerHandlerTest extends TestCase
@@ -28,13 +27,13 @@ class CreatePartnerHandlerTest extends TestCase
 
         $this->writer = $this->createMock(Writer::class);
         $this->viewer = $this->createMock(PartnerViewer::class);
-        $this->builder = $this->createMock(Builder::class);
+        $this->builder = $this->createMock(PartnerBuilder::class);
         $this->request = $this->createMock(Request::class);
     }
 
     public function init()
     {
-        return new CreateHandler($this->writer, $this->viewer, $this->builder);
+        return new CreatePartnerHandler($this->writer, $this->viewer, $this->builder);
     }
 
     public function testReturnSuccessHandle()

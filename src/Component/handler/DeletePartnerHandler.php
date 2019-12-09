@@ -9,7 +9,7 @@ use App\CustomException\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class DeleteHandler implements HandlerInterface
+class DeletePartnerHandler implements HandlerInterface
 {
     /** @var Writer  */
     private $writer;
