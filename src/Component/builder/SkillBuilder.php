@@ -18,7 +18,7 @@ class SkillBuilder
                 'id' => $category->getId(),
                 'name' => $category->getName(),
                 'subCategory' => [],
-                'skills' => $category->getSkills(),
+                'skills' => $category->getSkills()->toArray(),
                 ]
             ;
 
