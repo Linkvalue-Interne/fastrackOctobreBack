@@ -25,3 +25,8 @@ api_create_partner:
   path: /api/partner
   controller: App\Controller\PartnerController::create
   methods: POST
+
+api_list_skill:
+  path: /api/skill
+  controller: App\Controller\SkillController::list
+  methods: GET
