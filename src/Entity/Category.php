@@ -95,4 +95,13 @@ class Category implements EntityInterface
 
         return $this;
     }
+
+//    public function jsonSerialize()
+//    {
+//        return [
+//            'id' => $this->getId(),
+//
+//
+//        ];
+//    }
 }
