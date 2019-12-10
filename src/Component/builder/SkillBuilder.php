@@ -22,7 +22,7 @@ class SkillBuilder
                 ]
             ;
 
-            if ($category->getParentID()) {
+            if ($category->getParentId()) {
                 $result[$category->getParentId()]['subCategory'][] = $formatList;
 
                 continue;
