@@ -1,0 +1,34 @@
+App\Entity\PartnerSkill:
+  type: entity
+  table: partner_skill
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    level:
+      type: integer
+    createdAt:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updatedAt:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update
+  manyToOne:
+    skill:
+      targetEntity: skill
+      inversedBy: partnerSkill
+      joinColumn:
+        name: skill_id
+        referencedColumnName: id
+    partner:
+      targetEntity: partner
+      inversedBy: partnerSkill
+      joinColumn:
+        name: partner_id
+        referencedColumnName: id

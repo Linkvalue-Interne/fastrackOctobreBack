@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 class Partner implements EntityInterface
 {
     use EntityTrait;
@@ -35,6 +38,48 @@ class Partner implements EntityInterface
 
     /** @var string */
     private $avatar = 'default.jpg';
+
+    /** @var ArrayCollection */
+    private $skills;
+
+    public function __construct()
+    {
+        $this->skills = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Skill[]
+     */
+    public function getSkills(): Collection
+    {
+        return $this->skills;
+    }
+
+    /**
+     * @param PartnerSkill $skill
+     * @return Partner
+     */
+    public function addSkill(PartnerSkill $skill): Partner
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills[] = $skill;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param PartnerSkill $skill
+     * @return $this
+     */
+    public function removeSkill(PartnerSkill $skill): self
+    {
+        if ($this->skills->contains($skill)) {
+            $this->skills->removeElement($skill);
+        }
+
+        return $this;
+    }
 
     /**
      * @return string|null

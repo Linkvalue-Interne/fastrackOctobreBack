@@ -1,0 +1,9 @@
+App\Entity\PartnerSkill:
+  partnerSkill_0:
+    partner: '@partner_0'
+    skill: '@skill_1'
+    level: 30
+  partnerSkill_1:
+    partner: '@partner_0'
+    skill: '@skill_2'
+    level: 45

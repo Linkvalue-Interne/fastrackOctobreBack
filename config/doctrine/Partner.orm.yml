@@ -47,3 +47,7 @@ App\Entity\Partner:
           on: update
     isActive:
       type: boolean
+  oneToMany:
+    skills:
+      targetEntity: PartnerSkill
+      mappedBy: partner
