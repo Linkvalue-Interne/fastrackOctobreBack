@@ -46,6 +46,7 @@ class PartnerViewer
             'customer' => $partner->getCustomer(),
             'project' => $partner->getProject(),
             'avatar' => $partner->getAvatar(),
+            'skills' => $partner->getSkills()->toArray(),
             ]
         ;
     }

@@ -1,0 +1,65 @@
+App\Entity\PartnerSkill:
+  partnerSkill_0:
+    partner: '@partner_0'
+    skill: '@skill_1'
+    level: 30
+  partnerSkill_1:
+    partner: '@partner_0'
+    skill: '@skill_2'
+    level: 45
+  partnerSkill_2:
+    partner: '@partner_0'
+    skill: '@skill_3'
+    level: 13
+  partnerSkill_3:
+    partner: '@partner_0'
+    skill: '@skill_4'
+    level: 56
+  partnerSkill_4:
+    partner: '@partner_1'
+    skill: '@skill_5'
+    level: 30
+  partnerSkill_5:
+    partner: '@partner_1'
+    skill: '@skill_6'
+    level: 45
+  partnerSkill_6:
+    partner: '@partner_1'
+    skill: '@skill_7'
+    level: 13
+  partnerSkill_7:
+    partner: '@partner_1'
+    skill: '@skill_8'
+    level: 56
+  partnerSkill_8:
+    partner: '@partner_2'
+    skill: '@skill_5'
+    level: 30
+  partnerSkill_9:
+    partner: '@partner_2'
+    skill: '@skill_6'
+    level: 45
+  partnerSkill_10:
+    partner: '@partner_2'
+    skill: '@skill_7'
+    level: 13
+  partnerSkill_11:
+    partner: '@partner_2'
+    skill: '@skill_8'
+    level: 56
+  partnerSkill_13:
+    partner: '@partner_3'
+    skill: '@skill_8'
+    level: 56
+  partnerSkill_14:
+    partner: '@partner_3'
+    skill: '@skill_8'
+    level: 56
+  partnerSkill_15:
+    partner: '@partner_3'
+    skill: '@skill_8'
+    level: 56
+  partnerSkill_16:
+    partner: '@partner_3'
+    skill: '@skill_8'
+    level: 56

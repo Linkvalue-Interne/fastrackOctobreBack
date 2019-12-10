@@ -1,6 +1,8 @@
 <?php
-
 namespace App\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class Partner implements EntityInterface
 {
@@ -36,6 +38,48 @@ class Partner implements EntityInterface
     /** @var string */
     private $avatar = 'default.jpg';
 
+    /** @var ArrayCollection */
+    private $skills;
+
+    public function __construct()
+    {
+        $this->skills = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Skill[]
+     */
+    public function getSkills(): Collection
+    {
+        return $this->skills;
+    }
+
+    /**
+     * @param PartnerSkill $skill
+     * @return Partner
+     */
+    public function addSkill(PartnerSkill $skill): Partner
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills[] = $skill;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param PartnerSkill $skill
+     * @return $this
+     */
+    public function removeSkill(PartnerSkill $skill): self
+    {
+        if ($this->skills->contains($skill)) {
+            $this->skills->removeElement($skill);
+        }
+
+        return $this;
+    }
+
     /**
      * @return string|null
      */
@@ -43,7 +87,6 @@ class Partner implements EntityInterface
     {
         return $this->firstName;
     }
-
     /**
      * @param string $firstName
      * @return Partner
@@ -51,10 +94,8 @@ class Partner implements EntityInterface
     public function setFirstName(string $firstName): Partner
     {
         $this->firstName = $firstName;
-
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -62,7 +103,6 @@ class Partner implements EntityInterface
     {
         return $this->lastName;
     }
-
     /**
      * @param string $lastName
      * @return Partner
@@ -70,10 +110,8 @@ class Partner implements EntityInterface
     public function setLastName(string $lastName): Partner
     {
         $this->lastName = $lastName;
-
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -81,7 +119,6 @@ class Partner implements EntityInterface
     {
         return $this->job;
     }
-
     /**
      * @param string $job
      * @return Partner
@@ -89,10 +126,8 @@ class Partner implements EntityInterface
     public function setJob(string $job): Partner
     {
         $this->job = $job;
-
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -100,7 +135,6 @@ class Partner implements EntityInterface
     {
         return $this->email;
     }
-
     /**
      * @param string $email
      * @return Partner
@@ -108,10 +142,8 @@ class Partner implements EntityInterface
     public function setEmail(string $email): Partner
     {
         $this->email = $email;
-
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -119,7 +151,6 @@ class Partner implements EntityInterface
     {
         return $this->phoneNumber;
     }
-
     /**
      * @param string $phoneNumber
      * @return Partner
@@ -127,10 +158,8 @@ class Partner implements EntityInterface
     public function setPhoneNumber(string $phoneNumber): Partner
     {
         $this->phoneNumber = $phoneNumber;
-
         return $this;
     }
-
     /**
      * @return int|null
      */
@@ -138,7 +167,6 @@ class Partner implements EntityInterface
     {
         return $this->experience;
     }
-
     /**
      * @param int $experience
      * @return Partner
@@ -146,10 +174,8 @@ class Partner implements EntityInterface
     public function setExperience(int $experience): Partner
     {
         $this->experience = $experience;
-
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -157,7 +183,6 @@ class Partner implements EntityInterface
     {
         return $this->customer;
     }
-
     /**
      * @param string $customer
      * @return Partner
@@ -165,10 +190,8 @@ class Partner implements EntityInterface
     public function setCustomer(string $customer): Partner
     {
         $this->customer = $customer;
-
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -176,7 +199,6 @@ class Partner implements EntityInterface
     {
         return $this->project;
     }
-
     /**
      * @param string $project
      * @return Partner
@@ -184,10 +206,8 @@ class Partner implements EntityInterface
     public function setProject(string $project): Partner
     {
         $this->project = $project;
-
         return $this;
     }
-
     /**
      * @return bool|null
      */
@@ -195,7 +215,6 @@ class Partner implements EntityInterface
     {
         return $this->isActive;
     }
-
     /**
      * @param bool $isActive
      * @return Partner
@@ -203,10 +222,8 @@ class Partner implements EntityInterface
     public function setIsActive(bool $isActive): Partner
     {
         $this->isActive = $isActive;
-
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -214,7 +231,6 @@ class Partner implements EntityInterface
     {
         return $this->avatar;
     }
-
     /**
      * @param string $avatar
      * @return Partner
@@ -222,7 +238,6 @@ class Partner implements EntityInterface
     public function setAvatar(string $avatar): Partner
     {
         $this->avatar = $avatar;
-
         return $this;
     }
 }
