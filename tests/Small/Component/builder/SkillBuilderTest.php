@@ -64,25 +64,25 @@ class SkillBuilderTest extends TestCase
         $data = [$cat1, $cat2, $cat3];
 
         $expect = [
-            1 => [
-                    'id' => 1,
-                    'name' => null,
-                    'subCategory' => [],
-                    'skills' => null,
-                ],
-            2 => [
-                    'id' => 2,
-                    'name' => null,
-                    'subCategory' => [
-                        [
-                            "id" => 3,
-                            "name" => null,
-                            "subCategory" => [],
-                            "skills" => null,
-                        ],
+            [
+                'id' => 1,
+                'name' => null,
+                'subCategory' => [],
+                'skills' => null,
+            ],
+            [
+                'id' => 2,
+                'name' => null,
+                'subCategory' => [
+                    [
+                        "id" => 3,
+                        "name" => null,
+                        "subCategory" => [],
+                        "skills" => null,
                     ],
-                    'skills' => null,
                 ],
+                'skills' => null,
+            ],
         ];
 
         $actual = $this->init()->formatList($data);
