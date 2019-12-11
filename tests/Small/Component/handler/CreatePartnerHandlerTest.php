@@ -22,8 +22,6 @@ class CreatePartnerHandlerTest extends TestCase
 
     private $request;
 
-    private $logger;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -32,12 +30,11 @@ class CreatePartnerHandlerTest extends TestCase
         $this->viewer = $this->createMock(PartnerViewer::class);
         $this->builder = $this->createMock(Builder::class);
         $this->request = $this->createMock(Request::class);
-        $this->logger = $this->createMock(LoggerInterface::class);
     }
 
     public function init()
     {
-        return new CreateHandler($this->writer, $this->viewer, $this->builder, $this->logger);
+        return new CreateHandler($this->writer, $this->viewer, $this->builder);
     }
 
     public function testReturnSuccessHandle()

@@ -7,7 +7,6 @@ use App\Component\builder\Builder;
 use App\Component\viewer\PartnerViewer;
 use App\Component\writer\Writer;
 use Assert\Assertion;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class CreateHandler implements HandlerInterface
@@ -21,20 +20,15 @@ class CreateHandler implements HandlerInterface
     /** @var Builder  */
     private $builder;
 
-    /** @var LoggerInterface  */
-    private $logger;
-
-    public function __construct(Writer $writer, PartnerViewer $viewer, Builder $builder, LoggerInterface $logger)
+    public function __construct(Writer $writer, PartnerViewer $viewer, Builder $builder)
     {
         $this->writer = $writer;
         $this->viewer = $viewer;
         $this->builder = $builder;
-        $this->logger = $logger;
     }
 
     public function handle(Request $request): array
     {
-        $this->logger->debug('handle', [$request->getContent()]);
         $data = json_decode($request->getContent(), true);
 
         $this->checkKey($data);
