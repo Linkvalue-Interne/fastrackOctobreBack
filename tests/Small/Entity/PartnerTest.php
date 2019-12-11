@@ -2,9 +2,11 @@
 namespace tests\Small\Entity;
 
 use App\Entity\Partner;
+use App\Entity\PartnerSkill;
 use App\Tests\Small\Entity\GetterAndSetterInterface;
 use App\Tests\Small\Entity\GetterTraitTest;
 use App\Tests\Small\Entity\SetterTraitTest;
+use Doctrine\Common\Collections\Collection;
 use PHPUnit\Framework\TestCase;
 
 class PartnerTest extends TestCase implements GetterAndSetterInterface
@@ -27,5 +29,26 @@ class PartnerTest extends TestCase implements GetterAndSetterInterface
             ['customer', 'Client'],
             ['project', 'Booster'],
         ];
+    }
+
+    public function testGetSkills()
+    {
+        $this->assertInstanceOf(Collection::class, $this->init()->getSkills());
+    }
+
+    public function testAddAndRemoveSkill()
+    {
+        $object = $this->init();
+        $expect = $this->createMock(PartnerSkill::class);
+
+        $object->addSkill($expect);
+
+        $actual = count($object->getSkills());
+        $this->assertSame(1, $actual);
+
+        $object->removeSkill($expect);
+
+        $actual = count($object->getSkills());
+        $this->assertSame(0, $actual);
     }
 }

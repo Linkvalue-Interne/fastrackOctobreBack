@@ -62,5 +62,6 @@ class PartnerViewerTest extends TestCase
         $this->assertArrayHasKey('customer', $dataFormatted);
         $this->assertArrayHasKey('project', $dataFormatted);
         $this->assertArrayHasKey('avatar', $dataFormatted);
+        $this->assertArrayHasKey('skills', $dataFormatted);
     }
 }

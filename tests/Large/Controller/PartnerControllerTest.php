@@ -53,6 +53,24 @@ class PartnerControllerTest extends AppTestCase
             'customer' => 'client',
             'project' => 'project',
             'avatar' => 'cat4.jpg',
+            'skills' => [
+                [
+                    'id' => 1,
+                    'level' => 30,
+                ],
+                [
+                    'id' => 2,
+                    'level' => 45,
+                ],
+                [
+                    'id' => 3,
+                    'level' => 13,
+                ],
+                [
+                    'id' => 4,
+                    'level' => 56,
+                ],
+            ],
         ]
         ;
 
@@ -83,7 +101,7 @@ class PartnerControllerTest extends AppTestCase
     {
         $content = '{"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client"}';
 
-        $expect = '{"id":6,"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client","project":null,"avatar":"default.jpg"}';
+        $expect = '{"id":6,"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client","project":null,"avatar":"default.jpg","skills":[]}';
 
         $this->client->request('POST', '/api/partner', [], [], [], $content);
 
@@ -98,7 +116,7 @@ class PartnerControllerTest extends AppTestCase
     {
         $content = '{"firstName":"alex","lastName":"tual","job":"dev","email":"new@link-value.fr","phoneNumber":"0101","experience":10,"customer":"booster","project":"project"}';
 
-        $expect = '{"id":7,"firstName":"alex","lastName":"tual","job":"dev","email":"new@link-value.fr","phoneNumber":"0101","experience":10,"customer":"booster","project":"project","avatar":"default.jpg"}';
+        $expect = '{"id":7,"firstName":"alex","lastName":"tual","job":"dev","email":"new@link-value.fr","phoneNumber":"0101","experience":10,"customer":"booster","project":"project","avatar":"default.jpg","skills":[]}';
 
         $this->client->request('POST', '/api/partner', [], [], [], $content);
 
