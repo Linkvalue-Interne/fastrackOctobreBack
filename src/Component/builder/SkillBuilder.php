@@ -31,6 +31,6 @@ class SkillBuilder
             $result[$category->getId()] = $formatList;
         }
 
-        return $result;
+        return array_values($result);
     }
 }
