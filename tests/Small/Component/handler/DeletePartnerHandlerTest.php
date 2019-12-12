@@ -3,7 +3,7 @@
 
 namespace App\Tests\Small\Component\handler;
 
-use App\Component\handler\DeleteHandler;
+use App\Component\handler\DeletePartnerHandler;
 use App\Component\retrieveAll\PartnerRetriever;
 use App\Component\writer\Writer;
 use App\CustomException\InvalidArgumentException;
@@ -31,7 +31,7 @@ class DeletePartnerHandlerTest extends TestCase
 
     public function init()
     {
-        return new DeleteHandler($this->writer, $this->retriever);
+        return new DeletePartnerHandler($this->writer, $this->retriever);
     }
 
     public function testHandleSuccessReturnArray()

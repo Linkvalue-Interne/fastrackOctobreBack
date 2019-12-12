@@ -3,13 +3,13 @@
 
 namespace App\Component\handler;
 
-use App\Component\builder\Builder;
+use App\Component\builder\PartnerBuilder;
 use App\Component\viewer\PartnerViewer;
 use App\Component\writer\Writer;
 use Assert\Assertion;
 use Symfony\Component\HttpFoundation\Request;
 
-class CreateHandler implements HandlerInterface
+class CreatePartnerHandler implements HandlerInterface
 {
     /** @var Writer  */
     private $writer;
@@ -17,10 +17,10 @@ class CreateHandler implements HandlerInterface
     /** @var PartnerViewer  */
     private $viewer;
 
-    /** @var Builder  */
+    /** @var PartnerBuilder  */
     private $builder;
 
-    public function __construct(Writer $writer, PartnerViewer $viewer, Builder $builder)
+    public function __construct(Writer $writer, PartnerViewer $viewer, PartnerBuilder $builder)
     {
         $this->writer = $writer;
         $this->viewer = $viewer;

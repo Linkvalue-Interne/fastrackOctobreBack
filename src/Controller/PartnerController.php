@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Component\handler\CreateHandler;
-use App\Component\handler\DeleteHandler;
+use App\Component\handler\CreatePartnerHandler;
+use App\Component\handler\DeletePartnerHandler;
 use App\Component\handler\ListPartnerHandler;
 use App\Component\handler\OnePartnerHandler;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,21 +32,21 @@ class PartnerController
     }
 
     /**
-     * @param DeleteHandler $deleteHandler
+     * @param DeletePartnerHandler $deleteHandler
      * @param Request $request
      * @return JsonResponse
      */
-    public function delete(DeleteHandler $deleteHandler, Request $request): JsonResponse
+    public function delete(DeletePartnerHandler $deleteHandler, Request $request): JsonResponse
     {
         return new JsonResponse($deleteHandler->handle($request));
     }
 
     /**
-     * @param CreateHandler $createHandler
+     * @param CreatePartnerHandler $createHandler
      * @param Request $request
      * @return JsonResponse
      */
-    public function create(CreateHandler $createHandler, Request $request): JsonResponse
+    public function create(CreatePartnerHandler $createHandler, Request $request): JsonResponse
     {
         return new JsonResponse($createHandler->handle($request));
     }

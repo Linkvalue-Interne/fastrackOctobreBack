@@ -7,7 +7,7 @@ use App\Entity\Partner;
 use App\form\PartnerType;
 use Symfony\Component\Form\FormFactoryInterface;
 
-class Builder
+class PartnerBuilder
 {
     use HandleErrorFormTrait;
 
