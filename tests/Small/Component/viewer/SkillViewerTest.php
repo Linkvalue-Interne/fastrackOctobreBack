@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Tests\Small\Component\builder;
+namespace App\Tests\Small\Component\viewer;
 
-use App\Component\builder\SkillBuilder;
+use App\Component\viewer\SkillViewer;
 use App\Entity\Category;
 use Doctrine\Common\Collections\Collection;
 use PHPUnit\Framework\TestCase;
 
-class SkillBuilderTest extends TestCase
+class SkillViewerTest extends TestCase
 {
     private $category;
 
@@ -22,7 +22,7 @@ class SkillBuilderTest extends TestCase
 
     public function init()
     {
-        return new SkillBuilder();
+        return new SkillViewer();
     }
 
     public function testFormatList()

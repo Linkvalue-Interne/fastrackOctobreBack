@@ -3,9 +3,9 @@
 
 namespace App\Tests\Small\Component\handler;
 
-use App\Component\builder\SkillBuilder;
 use App\Component\handler\ListSkillHandler;
 use App\Component\retrieveAll\CategoryRetriever;
+use App\Component\viewer\SkillViewer;
 use App\Entity\Category;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +14,7 @@ class ListSkillHandlerTest extends TestCase
 {
     private $retriever;
 
-    private $builder;
+    private $viewer;
 
     private $request;
 
@@ -22,13 +22,13 @@ class ListSkillHandlerTest extends TestCase
     {
         parent::setUp();
         $this->retriever = $this->createMock(CategoryRetriever::class);
-        $this->builder = $this->createMock(SkillBuilder::class);
+        $this->viewer = $this->createMock(SkillViewer::class);
         $this->request = $this->createMock(Request::class);
     }
 
     public function init()
     {
-        return new ListSkillHandler($this->retriever, $this->builder);
+        return new ListSkillHandler($this->retriever, $this->viewer);
     }
 
     public function testHandleSuccess()
@@ -42,7 +42,7 @@ class ListSkillHandlerTest extends TestCase
             ->method('getAll')
             ->willReturn($listCategories);
 
-        $this->builder
+        $this->viewer
             ->expects($this->once())
             ->method('formatList')
             ->with($listCategories)
@@ -63,7 +63,7 @@ class ListSkillHandlerTest extends TestCase
             ->method('getAll')
             ->willReturn($listCategories);
 
-        $this->builder
+        $this->viewer
             ->expects($this->once())
             ->method('formatList')
             ->with($listCategories)
