@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Component\builder;
+namespace App\Component\viewer;
 
-class SkillBuilder
+class SkillViewer
 {
     /**
      * @param array $data
@@ -19,7 +19,7 @@ class SkillBuilder
                 'name' => $category->getName(),
                 'subCategory' => [],
                 'skills' => $category->getSkills()->toArray(),
-                ]
+            ]
             ;
 
             if ($category->getParentId()) {
