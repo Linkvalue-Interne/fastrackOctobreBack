@@ -19,9 +19,9 @@ class PartnerBuilder
         $this->formFactory = $formFactory;
     }
 
-    public function buildWithForm(array $data): Partner
+    public function buildWithForm(array $data, Partner $partner = null): Partner
     {
-        $partner = new Partner();
+        $partner =  $partner ?: new Partner();
 
         $form = $this->formFactory
             ->create(PartnerType::class, $partner)
