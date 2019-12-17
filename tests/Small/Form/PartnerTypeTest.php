@@ -1,20 +1,14 @@
 <?php
 
 
-namespace App\Tests\Small\Component;
+namespace App\Tests\Small\Form;
 
-use App\Component\builder\PartnerBuilder;
 use App\Entity\Partner;
 use App\form\PartnerType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class PartnerTypeTest extends TypeTestCase
 {
-    public function init()
-    {
-        return new PartnerBuilder($this->factory);
-    }
-
     public function testPartnerType()
     {
         $formData = [
