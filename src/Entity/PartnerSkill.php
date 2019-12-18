@@ -73,7 +73,7 @@ class PartnerSkill implements EntityInterface, \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'id' => $this->getId(),
+            'id' => $this->getSkill()->getId(),
             'level' => $this->getLevel(),
         ];
     }

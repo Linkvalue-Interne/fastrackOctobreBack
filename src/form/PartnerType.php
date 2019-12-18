@@ -30,7 +30,7 @@ class PartnerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'partner' => Partner::class,
+            'data_class' => Partner::class,
         ]);
     }
 }
