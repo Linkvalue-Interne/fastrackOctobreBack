@@ -3,6 +3,7 @@
 
 namespace App\Component\builder;
 
+use App\Component\retrieveAll\PartnerRetriever;
 use App\Entity\Partner;
 use App\form\PartnerType;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -14,14 +15,18 @@ class PartnerBuilder
     /** @var FormFactoryInterface  */
     private $formFactory;
 
-    public function __construct(FormFactoryInterface $formFactory)
+    /** @var PartnerRetriever  */
+    private $partnerRetriever;
+
+    public function __construct(FormFactoryInterface $formFactory, PartnerRetriever $partnerRetriever)
     {
         $this->formFactory = $formFactory;
+        $this->partnerRetriever = $partnerRetriever;
     }
 
-    public function buildWithForm(array $data, Partner $partner = null): Partner
+    public function buildWithForm(array $data, int $partnerId = null): Partner
     {
-        $partner =  $partner ?: new Partner();
+        $partner =  is_null($partnerId) ? new Partner() : $this->partnerRetriever->getOne($partnerId);
 
         $form = $this->formFactory
             ->create(PartnerType::class, $partner)
