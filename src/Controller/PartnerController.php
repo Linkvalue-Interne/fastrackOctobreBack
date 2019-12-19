@@ -6,6 +6,7 @@ use App\Component\handler\CreatePartnerHandler;
 use App\Component\handler\DeletePartnerHandler;
 use App\Component\handler\ListPartnerHandler;
 use App\Component\handler\OnePartnerHandler;
+use App\Component\handler\UpdatePartnerHandler;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -49,5 +50,15 @@ class PartnerController
     public function create(CreatePartnerHandler $createHandler, Request $request): JsonResponse
     {
         return new JsonResponse($createHandler->handle($request));
+    }
+
+    /**
+     * @param UpdatePartnerHandler $updatePartnerHandler
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function update(UpdatePartnerHandler $updatePartnerHandler, Request $request): JsonResponse
+    {
+        return new JsonResponse($updatePartnerHandler->handle($request));
     }
 }

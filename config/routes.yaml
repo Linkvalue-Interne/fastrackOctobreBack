@@ -26,6 +26,13 @@ api_create_partner:
   controller: App\Controller\PartnerController::create
   methods: POST
 
+api_update_partner:
+  path: /api/partner/{id}
+  controller: App\Controller\PartnerController::update
+  methods: PUT
+  requirements:
+    id: '\d+'
+
 api_list_skill:
   path: /api/skill
   controller: App\Controller\SkillController::list

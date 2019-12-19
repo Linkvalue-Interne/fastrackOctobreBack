@@ -46,18 +46,18 @@ App\Entity\Category:
     name: Android
     parentId: 3
     skills:
-      - '@skill_34'
-      - '@skill_35'
-      - '@skill_36'
-      - '@skill_37'
-      - '@skill_38'
-  category_5:
-    name: IOS
-    parentId: 3
-    skills:
       - '@skill_40'
       - '@skill_41'
       - '@skill_42'
       - '@skill_43'
       - '@skill_44'
+  category_5:
+    name: IOS
+    parentId: 3
+    skills:
+      - '@skill_34'
+      - '@skill_35'
+      - '@skill_36'
+      - '@skill_37'
+      - '@skill_38'
 
