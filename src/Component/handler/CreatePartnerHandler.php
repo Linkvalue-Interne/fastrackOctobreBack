@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CreatePartnerHandler implements HandlerInterface
 {
+    use FormatDataTrait;
+
     /** @var Writer  */
     private $writer;
 
@@ -33,7 +35,14 @@ class CreatePartnerHandler implements HandlerInterface
 
         $this->checkKey($data);
 
-        return $this->viewer->formatShow($this->writer->savePartner($this->builder->buildWithForm($data)));
+        return $this
+            ->viewer->formatShow(
+                $this->writer->savePartner(
+                    $this->builder->buildWithForm(
+                        $this->formatData($data)
+                    )
+                )
+            );
     }
 
     public function checkKey(array $data)

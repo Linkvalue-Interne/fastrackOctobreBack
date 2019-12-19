@@ -10,7 +10,6 @@ class PartnerRetriever
     /** @var PartnerRepository  */
     private $repo;
 
-
     public function __construct(PartnerRepository $repository)
     {
         $this->repo = $repository;
@@ -28,10 +27,10 @@ class PartnerRetriever
     }
 
     /**
-     * @param int $id
-     * @return object|array
+     * @param int|null $id
+     * @return array
      */
-    public function getOne(int $id)
+    public function getOne(?int $id)
     {
         return $this->repo->findOneBy(['id' => $id, 'isActive' => true]) ?: [];
     }
