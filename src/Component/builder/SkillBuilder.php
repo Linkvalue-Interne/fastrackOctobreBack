@@ -3,19 +3,33 @@
 
 namespace App\Component\builder;
 
-use App\Entity\Partner;
+use App\Component\retrieveAll\PartnerRetriever;
+use App\Component\retrieveAll\SkillRetriever;
 use App\Entity\PartnerSkill;
-use App\Entity\Skill;
 
 class SkillBuilder
 {
-    public function buildPartnerSkill(Partner $partner, Skill $skill, int $level): PartnerSkill
+    /** @var PartnerRetriever  */
+    private $partnerRetriever;
+
+    /** @var SkillRetriever  */
+    private $skillRetriever;
+
+    public function __construct(
+        PartnerRetriever $partnerRetriever,
+        SkillRetriever $skillRetriever
+    ) {
+        $this->partnerRetriever = $partnerRetriever;
+        $this->skillRetriever = $skillRetriever;
+    }
+
+    public function buildPartnerSkill(int $partnerId, int $skillId, int $level): PartnerSkill
     {
         $partnerSkill = new PartnerSkill();
 
         return $partnerSkill
-            ->setPartner($partner)
-            ->setSkill($skill)
+            ->setPartner($this->partnerRetriever->getOne($partnerId))
+            ->setSkill($this->skillRetriever->getOne($skillId))
             ->setLevel($level);
     }
 }
