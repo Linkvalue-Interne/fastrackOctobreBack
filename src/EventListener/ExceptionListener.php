@@ -46,6 +46,12 @@ class ExceptionListener
                     ]
                 ;
                 break;
+            default:
+                $errors = [
+                    'status' => $exception->getCode(),
+                    'message' => $exception->getMessage(),
+                ]
+                ;
         }
 
         $event->setResponse(new JsonResponse($errors, $errors['status']));

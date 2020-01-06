@@ -7,22 +7,12 @@ trait FormatDataTrait
 {
     /**
      * @param array $data
+     * @param array $authorizedKey
      * @return array
      */
-    public function formatData(array $data): array
+    public function formatData(array $data, array $authorizedKey): array
     {
         $result = [];
-
-        $authorizedKey = [
-            'firstName',
-            'lastName',
-            'job',
-            'email',
-            'phoneNumber',
-            'experience',
-            'customer',
-            'project',
-        ];
 
         foreach ($data as $key => $value) {
             if (in_array($key, $authorizedKey)) {
