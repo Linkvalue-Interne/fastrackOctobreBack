@@ -31,15 +31,26 @@ class CreatePartnerHandler implements HandlerInterface
 
     public function handle(Request $request): array
     {
-        $data = json_decode($request->getContent(), true);
-
+        $data = $request->request->all();
         $this->checkKey($data);
+
+        $authorizedKey = [
+            'firstName',
+            'lastName',
+            'job',
+            'email',
+            'phoneNumber',
+            'experience',
+            'customer',
+            'project',
+            'avatar',
+        ];
 
         return $this
             ->viewer->formatShow(
                 $this->writer->savePartner(
                     $this->builder->buildWithForm(
-                        $this->formatData($data)
+                        $this->formatData($data, $authorizedKey)
                     )
                 )
             );

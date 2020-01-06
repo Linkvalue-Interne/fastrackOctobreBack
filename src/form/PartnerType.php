@@ -24,6 +24,7 @@ class PartnerType extends AbstractType
             ->add('experience', IntegerType::class)
             ->add('customer', TextType::class, ['required' => false])
             ->add('project', TextType::class, ['required' => false])
+            ->add('avatar', TextType::class, ['required' => false])
         ;
     }
 

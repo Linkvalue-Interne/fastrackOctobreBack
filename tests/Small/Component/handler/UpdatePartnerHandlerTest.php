@@ -62,7 +62,7 @@ class UpdatePartnerHandlerTest extends KernelTestCase
      */
     public function getData(): array
     {
-        return $content = [
+        return [
             "id" => 2,
             "firstName" => "Jimmy",
             "lastName" => "neutron",
@@ -149,7 +149,18 @@ class UpdatePartnerHandlerTest extends KernelTestCase
             "project" => "project",
         ];
 
-        $actual = $this->init()->formatData($this->getData());
+        $authorizedKey = [
+            'firstName',
+            'lastName',
+            'job',
+            'email',
+            'phoneNumber',
+            'experience',
+            'customer',
+            'project',
+        ];
+
+        $actual = $this->init()->formatData($this->getData(), $authorizedKey);
 
         $this->assertSame($expect, $actual);
     }

@@ -33,8 +33,7 @@ App\Entity\Partner:
       lenght: 255
       nullable: true
     avatar:
-      type: string
-      lenght: 255
+      type: text
     createdAt:
       type: datetime
       gedmo:

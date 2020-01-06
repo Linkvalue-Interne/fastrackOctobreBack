@@ -28,36 +28,205 @@ App\Entity\Category:
       - '@skill_21'
       - '@skill_22'
       - '@skill_23'
-      - '@skill_24'
-      - '@skill_25'
-      - '@skill_26'
+      - '@skill_11'
+      - '@skill_12'
+      - '@skill_13'
   category_3:
     name: Mobile
     skills:
-      - '@skill_39'
+      - '@skill_34'
+      - '@skill_24'
+      - '@skill_25'
+      - '@skill_26'
+      - '@skill_12'
       - '@skill_27'
       - '@skill_28'
       - '@skill_29'
-      - '@skill_30'
-      - '@skill_31'
-      - '@skill_32'
-      - '@skill_33'
   category_4:
     name: Android
     parentId: 3
     skills:
-      - '@skill_40'
-      - '@skill_41'
-      - '@skill_42'
-      - '@skill_43'
-      - '@skill_44'
+      - '@skill_6'
+      - '@skill_30'
+      - '@skill_31'
+      - '@skill_32'
+      - '@skill_33'
   category_5:
     name: IOS
     parentId: 3
     skills:
-      - '@skill_34'
       - '@skill_35'
       - '@skill_36'
       - '@skill_37'
       - '@skill_38'
-
+      - '@skill_11'
+  category_6:
+    name: Cross platform
+    parentId: 3
+    skills:
+      - '@skill_39'
+      - '@skill_40'
+      - '@skill_41'
+      - '@skill_42'
+      - '@skill_43'
+  category_7:
+    name: Infrastructure
+    skills:
+      - '@skill_44'
+      - '@skill_45'
+      - '@skill_46'
+      - '@skill_12'
+      - '@skill_13'
+  category_8:
+    name: Scripting
+    skills:
+      - '@skill_8'
+      - '@skill_47'
+      - '@skill_48'
+      - '@skill_49'
+  category_9:
+    name: IAAS
+    skills:
+      - '@skill_50'
+      - '@skill_51'
+      - '@skill_52'
+  category_10:
+    name: Intégration continue
+    skills:
+      - '@skill_53'
+      - '@skill_54'
+      - '@skill_55'
+      - '@skill_56'
+      - '@skill_57'
+  category_11:
+    name: Conteneur
+    skills:
+      - '@skill_58'
+      - '@skill_59'
+      - '@skill_60'
+      - '@skill_61'
+  category_12:
+    name: Virtualisation
+    skills:
+      - '@skill_62'
+      - '@skill_63'
+  category_13:
+    name: Monitoring
+    skills:
+      - '@skill_64'
+      - '@skill_65'
+      - '@skill_66'
+  category_14:
+    name: Infrastructure as code
+    skills:
+      - '@skill_67'
+      - '@skill_68'
+      - '@skill_69'
+  category_15:
+    name: BDD
+  category_16:
+    name: bdd SQL
+    parentId: 15
+    skills:
+      - '@skill_70'
+      - '@skill_71'
+      - '@skill_72'
+      - '@skill_73'
+      - '@skill_74'
+  category_17:
+    name: bdd NoSQL
+    parentId: 15
+    skills:
+      - '@skill_75'
+      - '@skill_76'
+      - '@skill_77'
+      - '@skill_78'
+  category_18:
+    name: Data science
+    skills:
+      - '@skill_46'
+      - '@skill_12'
+      - '@skill_13'
+      - '@skill_79'
+      - '@skill_80'
+  category_19:
+    name: Modèles
+    parentId: 18
+    skills:
+      - '@skill_81'
+      - '@skill_82'
+  category_20:
+    name: Languages
+    parentId: 18
+    skills:
+      - '@skill_8'
+      - '@skill_83'
+      - '@skill_9'
+  category_21:
+    name: ML librairies
+    parentId: 18
+    skills:
+      - '@skill_84'
+      - '@skill_85'
+      - '@skill_86'
+  category_22:
+    name: DL librairies
+    parentId: 18
+    skills:
+      - '@skill_87'
+      - '@skill_88'
+      - '@skill_89'
+  category_23:
+    name: Data Ingénieur
+    skills:
+      - '@skill_46'
+      - '@skill_12'
+      - '@skill_13'
+  category_24:
+    name: Scala librairies
+    parentId: 23
+    skills:
+      - '@skill_90'
+      - '@skill_91'
+  category_25:
+    name: Hadoop
+    parentId: 23
+    skills:
+      - '@skill_92'
+      - '@skill_93'
+      - '@skill_94'
+      - '@skill_95'
+      - '@skill_96'
+      - '@skill_97'
+  category_26:
+    name: Outils
+    parentId: 23
+    skills:
+      - '@skill_98'
+      - '@skill_100'
+      - '@skill_101'
+      - '@skill_102'
+      - '@skill_103'
+  category_27:
+    name: Tests
+    parentId: 23
+    skills:
+      - '@skill_104'
+  category_28:
+    name: Méthodologie
+    skills:
+      - '@skill_105'
+      - '@skill_106'
+      - '@skill_107'
+  category_29:
+    name: Techniques de conception/ Développement
+    parentId: 28
+    skills:
+      - '@skill_108'
+      - '@skill_109'
+  category_30:
+    name: Versionning
+    parentId: 28
+    skills:
+      - '@skill_110'
+      - '@skill_111'

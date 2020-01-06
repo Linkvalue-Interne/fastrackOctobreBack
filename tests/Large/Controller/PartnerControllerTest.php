@@ -99,26 +99,20 @@ class PartnerControllerTest extends AppTestCase
 
     public function testCreateSuccess()
     {
-        $content = '{"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client"}';
+        $content = [
+            "firstName" => "alex",
+            "lastName" => "tual",
+            "job" => "dev",
+            "email" => "tual@link-value.fr",
+            "phoneNumber" => "0101",
+            "experience" => 10,
+            "customer" => "client",
+            "avatar" => "image.jpg",
+        ];
 
-        $expect = '{"id":6,"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client","project":null,"avatar":"default.jpg","skills":[]}';
+        $expect = '{"id":6,"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client","project":null,"avatar":"image.jpg","skills":[]}';
 
-        $this->client->request('POST', '/api/partner', [], [], [], $content);
-
-        $actual = $this->client->getResponse()->getContent();
-
-        $this->saveEntity($actual);
-
-        $this->assertSame($expect, $actual);
-    }
-
-    public function testCreateSuccessWithBoosterCustomer()
-    {
-        $content = '{"firstName":"alex","lastName":"tual","job":"dev","email":"new@link-value.fr","phoneNumber":"0101","experience":10,"customer":"booster","project":"project"}';
-
-        $expect = '{"id":7,"firstName":"alex","lastName":"tual","job":"dev","email":"new@link-value.fr","phoneNumber":"0101","experience":10,"customer":"booster","project":"project","avatar":"default.jpg","skills":[]}';
-
-        $this->client->request('POST', '/api/partner', [], [], [], $content);
+        $this->client->request('POST', '/api/partner', $content);
 
         $actual = $this->client->getResponse()->getContent();
 
@@ -129,11 +123,13 @@ class PartnerControllerTest extends AppTestCase
 
     public function testCreateWrongKey()
     {
-        $content = '{"badKey":"alex"}';
+        $content = [
+            "badKey" => "alex",
+        ];
 
         $expect = '{"status":400,"message":"the element with key \u0022firstName\u0022 is required"}';
 
-        $this->client->request('POST', '/api/partner', [], [], [], $content);
+        $this->client->request('POST', '/api/partner', $content);
 
         $this->assertSame($expect, $this->client->getResponse()->getContent());
         $this->assertJson($this->client->getResponse()->getContent());

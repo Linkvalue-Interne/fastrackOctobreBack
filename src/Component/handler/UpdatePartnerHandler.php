@@ -42,10 +42,21 @@ class UpdatePartnerHandler implements HandlerInterface
     {
         $data = json_decode($request->getContent(), true);
 
+        $authorizedKey = [
+            'firstName',
+            'lastName',
+            'job',
+            'email',
+            'phoneNumber',
+            'experience',
+            'customer',
+            'project',
+        ];
+
         $partner = $this->writer
             ->savePartner($this->partnerBuilder
                 ->buildWithForm(
-                    $this->formatData($data),
+                    $this->formatData($data, $authorizedKey),
                     $data['id']
                 ));
 

@@ -9,6 +9,7 @@ use App\Component\viewer\PartnerViewer;
 use App\Component\writer\Writer;
 use App\Entity\Partner;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 
 class CreatePartnerHandlerTest extends TestCase
@@ -48,9 +49,8 @@ class CreatePartnerHandlerTest extends TestCase
             "phoneNumber" => "01 02 03 04 05",
             "experience" => 20,
             "customer" => "Empire",
+            "avatar" => "image.png"
         ];
-
-        $dataJson = json_encode($data, true);
 
         $this->builder
             ->expects($this->once())
@@ -70,30 +70,15 @@ class CreatePartnerHandlerTest extends TestCase
             ->with($partner)
             ->willReturn($data);
 
-        $this->request
-            ->expects($this->any())
-            ->method('getContent')
-            ->willReturn($dataJson);
+        $this->request->request = $this->createMock(ParameterBag::class);
+
+        $this->request->request
+            ->expects($this->once())
+            ->method('all')
+            ->willReturn($data);
 
         $actual = $this->init()->handle($this->request);
 
         $this->assertSame($data, $actual);
-    }
-
-    public function testReturnBadRequestHandle()
-    {
-        $data = ['fakeAttribute' => 'Dark'];
-        $this->expectException(\InvalidArgumentException::class);
-
-        $dataJson = json_encode($data, true);
-
-        $this->request
-            ->expects($this->any())
-            ->method('getContent')
-            ->willReturn($dataJson);
-
-        $actual = $this->init()->handle($this->request);
-
-        $this->assertSame($this->getExpectedException(), $actual);
     }
 }
