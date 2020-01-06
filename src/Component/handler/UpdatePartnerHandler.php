@@ -51,6 +51,7 @@ class UpdatePartnerHandler implements HandlerInterface
             'experience',
             'customer',
             'project',
+            'avatar',
         ];
 
         $partner = $this->writer
