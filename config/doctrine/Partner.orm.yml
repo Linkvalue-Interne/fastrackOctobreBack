@@ -34,6 +34,8 @@ App\Entity\Partner:
       nullable: true
     avatar:
       type: text
+    favorites:
+      type: array
     createdAt:
       type: datetime
       gedmo:

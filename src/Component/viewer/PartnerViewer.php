@@ -22,6 +22,7 @@ class PartnerViewer
                 'lastName' => $partner->getLastname(),
                 'job' => $partner->getJob(),
                 'avatar' => $partner->getAvatar(),
+                'favorites' => $partner->getFavorites(),
                 ]
             ;
         }
@@ -46,6 +47,7 @@ class PartnerViewer
             'customer' => $partner->getCustomer(),
             'project' => $partner->getProject(),
             'avatar' => $partner->getAvatar(),
+            'favorites' => $partner->getFavorites(),
             'skills' => $partner->getSkills()->toArray(),
             ]
         ;
