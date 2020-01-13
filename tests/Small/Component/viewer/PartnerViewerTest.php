@@ -27,7 +27,9 @@ class PartnerViewerTest extends TestCase
             ->setCustomer('client')
             ->setExperience(30)
             ->setProject('project')
-            ->setAvatar('default.jpg');
+            ->setAvatar('default.jpg')
+            ->setFavorites([1, 2, 3])
+        ;
     }
 
     public function init(): PartnerViewer
@@ -46,6 +48,7 @@ class PartnerViewerTest extends TestCase
         $this->assertArrayHasKey('lastName', $dataFormatted[0]);
         $this->assertArrayHasKey('job', $dataFormatted[0]);
         $this->assertArrayHasKey('avatar', $dataFormatted[0]);
+        $this->assertArrayHasKey('favorites', $dataFormatted[0]);
     }
 
     public function testFormatShowKeyExist()
@@ -62,6 +65,7 @@ class PartnerViewerTest extends TestCase
         $this->assertArrayHasKey('customer', $dataFormatted);
         $this->assertArrayHasKey('project', $dataFormatted);
         $this->assertArrayHasKey('avatar', $dataFormatted);
+        $this->assertArrayHasKey('favorites', $dataFormatted);
         $this->assertArrayHasKey('skills', $dataFormatted);
     }
 }

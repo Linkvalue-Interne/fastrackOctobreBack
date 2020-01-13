@@ -41,6 +41,9 @@ class Partner implements EntityInterface
     /** @var ArrayCollection */
     private $skills;
 
+    /** @var array */
+    private $favorites;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
@@ -256,6 +259,25 @@ class Partner implements EntityInterface
         if ($this->skills->contains($skill)) {
             $this->skills->removeElement($skill);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getFavorites(): ?array
+    {
+        return $this->favorites;
+    }
+
+    /**
+     * @param array $favorites
+     * @return Partner
+     */
+    public function setFavorites(array $favorites): Partner
+    {
+        $this->favorites = $favorites;
 
         return $this;
     }

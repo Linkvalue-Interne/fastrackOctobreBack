@@ -28,6 +28,7 @@ class PartnerTest extends TestCase implements GetterAndSetterInterface
             ['experience', 20],
             ['customer', 'Client'],
             ['project', 'Booster'],
+            ['favorites', [1,2,3]],
         ];
     }
 

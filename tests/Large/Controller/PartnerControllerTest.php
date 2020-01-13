@@ -28,6 +28,7 @@ class PartnerControllerTest extends AppTestCase
                 'lastName' => 'Wayne',
                 'job' => 'Milliardaire',
                 'avatar' => 'cat4.jpg',
+                'favorites' => [10, 11, 12],
             ]
         ;
 
@@ -53,6 +54,7 @@ class PartnerControllerTest extends AppTestCase
             'customer' => 'client',
             'project' => 'project',
             'avatar' => 'cat4.jpg',
+            'favorites' => [1, 2, 3],
             'skills' => [
                 [
                     'id' => 1,
@@ -110,7 +112,7 @@ class PartnerControllerTest extends AppTestCase
             "avatar" => "image.jpg",
         ];
 
-        $expect = '{"id":6,"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client","project":null,"avatar":"image.jpg","skills":[]}';
+        $expect = '{"id":6,"firstName":"alex","lastName":"tual","job":"dev","email":"tual@link-value.fr","phoneNumber":"0101","experience":10,"customer":"client","project":null,"avatar":"image.jpg","favorites":null,"skills":[]}';
 
         $this->client->request('POST', '/api/partner', $content);
 
