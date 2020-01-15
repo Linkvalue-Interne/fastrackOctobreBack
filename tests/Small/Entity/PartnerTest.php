@@ -3,6 +3,7 @@ namespace tests\Small\Entity;
 
 use App\Entity\Partner;
 use App\Entity\PartnerSkill;
+use App\Entity\Skill;
 use App\Tests\Small\Entity\GetterAndSetterInterface;
 use App\Tests\Small\Entity\GetterTraitTest;
 use App\Tests\Small\Entity\SetterTraitTest;
@@ -28,7 +29,6 @@ class PartnerTest extends TestCase implements GetterAndSetterInterface
             ['experience', 20],
             ['customer', 'Client'],
             ['project', 'Booster'],
-            ['favorites', [1,2,3]],
         ];
     }
 
@@ -50,6 +50,22 @@ class PartnerTest extends TestCase implements GetterAndSetterInterface
         $object->removeSkill($expect);
 
         $actual = count($object->getSkills());
+        $this->assertSame(0, $actual);
+    }
+
+    public function testAddAndRemoveFavoritesSkill()
+    {
+        $object = $this->init();
+        $expect = $this->createMock(Skill::class);
+
+        $object->addFavorite($expect);
+
+        $actual = count($object->getFavorites());
+
+        $this->assertSame(1, $actual);
+        $object->removeFavorite($expect);
+
+        $actual = count($object->getFavorites());
         $this->assertSame(0, $actual);
     }
 }
