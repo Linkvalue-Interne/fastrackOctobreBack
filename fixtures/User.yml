@@ -1,0 +1,5 @@
+App\Entity\User:
+  user_1:
+    username: admin
+    email: admin@link-value.fr
+    password: password
