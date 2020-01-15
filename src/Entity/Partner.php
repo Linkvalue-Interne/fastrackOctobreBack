@@ -41,12 +41,13 @@ class Partner implements EntityInterface
     /** @var ArrayCollection */
     private $skills;
 
-    /** @var array */
+    /** @var ArrayCollection */
     private $favorites;
 
     public function __construct()
     {
         $this->skills = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     /**
@@ -59,11 +60,13 @@ class Partner implements EntityInterface
 
     /**
      * @param string $firstName
+     *
      * @return Partner
      */
     public function setFirstName(string $firstName): Partner
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -77,11 +80,13 @@ class Partner implements EntityInterface
 
     /**
      * @param string $lastName
+     *
      * @return Partner
      */
     public function setLastName(string $lastName): Partner
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
@@ -95,11 +100,13 @@ class Partner implements EntityInterface
 
     /**
      * @param string $job
+     *
      * @return Partner
      */
     public function setJob(string $job): Partner
     {
         $this->job = $job;
+
         return $this;
     }
 
@@ -113,11 +120,13 @@ class Partner implements EntityInterface
 
     /**
      * @param string $email
+     *
      * @return Partner
      */
     public function setEmail(string $email): Partner
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -131,11 +140,13 @@ class Partner implements EntityInterface
 
     /**
      * @param string $phoneNumber
+     *
      * @return Partner
      */
     public function setPhoneNumber(string $phoneNumber): Partner
     {
         $this->phoneNumber = $phoneNumber;
+
         return $this;
     }
 
@@ -149,11 +160,13 @@ class Partner implements EntityInterface
 
     /**
      * @param int $experience
+     *
      * @return Partner
      */
     public function setExperience(int $experience): Partner
     {
         $this->experience = $experience;
+
         return $this;
     }
 
@@ -167,11 +180,13 @@ class Partner implements EntityInterface
 
     /**
      * @param string $customer
+     *
      * @return Partner
      */
     public function setCustomer(string $customer): Partner
     {
         $this->customer = $customer;
+
         return $this;
     }
 
@@ -185,11 +200,13 @@ class Partner implements EntityInterface
 
     /**
      * @param string $project
+     *
      * @return Partner
      */
     public function setProject(string $project): Partner
     {
         $this->project = $project;
+
         return $this;
     }
 
@@ -203,6 +220,7 @@ class Partner implements EntityInterface
 
     /**
      * @param bool $isActive
+     *
      * @return Partner
      */
     public function setIsActive(bool $isActive): Partner
@@ -221,6 +239,7 @@ class Partner implements EntityInterface
 
     /**
      * @param string $avatar
+     *
      * @return Partner
      */
     public function setAvatar(string $avatar): Partner
@@ -239,6 +258,7 @@ class Partner implements EntityInterface
 
     /**
      * @param PartnerSkill $skill
+     *
      * @return Partner
      */
     public function addSkill(PartnerSkill $skill): Partner
@@ -252,9 +272,10 @@ class Partner implements EntityInterface
 
     /**
      * @param PartnerSkill $skill
+     *
      * @return $this
      */
-    public function removeSkill(PartnerSkill $skill): self
+    public function removeSkill(PartnerSkill $skill): Partner
     {
         if ($this->skills->contains($skill)) {
             $this->skills->removeElement($skill);
@@ -264,20 +285,37 @@ class Partner implements EntityInterface
     }
 
     /**
-     * @return array|null
+     * @return Collection|Skill[]
      */
-    public function getFavorites(): ?array
+    public function getFavorites(): Collection
     {
         return $this->favorites;
     }
 
     /**
-     * @param array $favorites
+     * @param Skill $skill
+     *
      * @return Partner
      */
-    public function setFavorites(array $favorites): Partner
+    public function addFavorite(Skill $skill): Partner
     {
-        $this->favorites = $favorites;
+        if (!$this->favorites->contains($skill)) {
+            $this->favorites[] = $skill;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Skill $skill
+     *
+     * @return $this
+     */
+    public function removeFavorite(Skill $skill): Partner
+    {
+        if ($this->favorites->contains($skill)) {
+            $this->favorites->removeElement($skill);
+        }
 
         return $this;
     }

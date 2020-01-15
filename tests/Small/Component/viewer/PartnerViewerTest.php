@@ -6,6 +6,7 @@ namespace App\Tests\Component\viewer;
 use App\Component\retrieveAll\PartnerRetriever;
 use App\Component\viewer\PartnerViewer;
 use App\Entity\Partner;
+use App\Entity\Skill;
 use PHPUnit\Framework\TestCase;
 
 class PartnerViewerTest extends TestCase
@@ -14,9 +15,12 @@ class PartnerViewerTest extends TestCase
 
     private $partner;
 
+    private $skill;
+
     protected function setUp(): void
     {
         $this->retriever = $this->createMock(PartnerRetriever::class);
+        $this->skill = $skill = $this->createMock(Skill::class);
         $this->partner = $this->createMock(Partner::class);
         $this->partner
             ->setFirstName('Dark')
@@ -28,7 +32,7 @@ class PartnerViewerTest extends TestCase
             ->setExperience(30)
             ->setProject('project')
             ->setAvatar('default.jpg')
-            ->setFavorites([1, 2, 3])
+            ->addFavorite($this->skill)
         ;
     }
 

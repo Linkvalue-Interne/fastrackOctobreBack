@@ -10,7 +10,7 @@ App\Entity\Partner:
     project: project
     avatar: cat4.jpg
     isActive: 1
-    favorites: [1, 2, 3]
+    favorites: ['@skill_1', '@skill_2', '@skill_3']
   partner_1:
     firstname: Jimmy
     lastname: Hendrix
@@ -22,7 +22,7 @@ App\Entity\Partner:
     project: project
     avatar: cat4.jpg
     isActive: 1
-    favorites: [4, 5, 6]
+    favorites: ['@skill_1', '@skill_2', '@skill_3']
   partner_2:
     firstname: Dark
     lastname: Vador
@@ -34,7 +34,7 @@ App\Entity\Partner:
     project: project
     avatar: cat4.jpg
     isActive: 1
-    favorites: [7, 8, 9]
+    favorites: ['@skill_1', '@skill_2', '@skill_3']
   partner_3:
     firstname: Bruce
     lastname: Wayne
@@ -46,4 +46,4 @@ App\Entity\Partner:
     project: project
     avatar: cat4.jpg
     isActive: 1
-    favorites: [10, 11, 12]
+    favorites: ['@skill_1', '@skill_2', '@skill_3']

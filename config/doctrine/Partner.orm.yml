@@ -34,8 +34,6 @@ App\Entity\Partner:
       nullable: true
     avatar:
       type: text
-    favorites:
-      type: array
     createdAt:
       type: datetime
       gedmo:
@@ -52,3 +50,14 @@ App\Entity\Partner:
     skills:
       targetEntity: PartnerSkill
       mappedBy: partner
+  manyToMany:
+    favorites:
+      targetEntity: Skill
+      joinTable:
+        name: favorite_skill
+        joinColumns:
+          partner_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          skill_id:
+            referencedColumnName: id
