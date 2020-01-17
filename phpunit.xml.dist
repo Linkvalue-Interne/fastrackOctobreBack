@@ -14,6 +14,9 @@
         <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
         <server name="SYMFONY_PHPUNIT_VERSION" value="7.5" />
         <env name="DATABASE_URL" value="mysql://root:root@fastrackOctobreBack_sql:3306/fastrackOctobreBack_test" />
+        <env name="JWT_PASSPHRASE" value="skillfactory" />
+        <env name="JWT_SECRET_KEY" value="tests/config/jwt/private.pem" />
+        <env name="JWT_PUBLIC_KEY" value="tests/config/jwt/public.pem" />
     </php>
 
     <testsuites>
