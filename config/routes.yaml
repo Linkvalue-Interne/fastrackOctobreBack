@@ -1,3 +1,6 @@
+api_login_check:
+  path: /api/login
+
 api_list_partner:
   path: /api/partner/{filter}
   controller: App\Controller\PartnerController::list

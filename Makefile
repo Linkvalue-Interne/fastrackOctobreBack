@@ -19,7 +19,8 @@ down:
 	docker-compose down --rmi all -v --remove-orphans
 
 lint:
-	vendor/bin/phpcs src
+	php-cs-fixer fix src/
+	php-cs-fixer fix tests/
 
 test:
 	docker exec -it fastrackOctobreBack_php sh -c "APP_ENV=test php bin/console doctrine:database:drop --force --if-exists"
@@ -45,3 +46,11 @@ install-vendor:
 
 update-vendor:
 	docker exec -it fastrackOctobreBack_php composer update
+
+## Generate JWT key ssh
+########################
+
+gen-jwt:
+	docker exec -it fastrackOctobreBack_php sh -c 'mkdir -p config/jwt'
+	docker exec -it fastrackOctobreBack_php sh -c "openssl genrsa -passout pass:${JWT_PASSPHRASE} -out  ${JWT_SECRET_KEY} -aes256 4096"
+	docker exec -it fastrackOctobreBack_php sh -c "openssl rsa -pubout -passin pass:${JWT_PASSPHRASE} -in ${JWT_SECRET_KEY} -out ${JWT_PUBLIC_KEY} -pubout"
