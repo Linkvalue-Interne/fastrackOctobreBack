@@ -45,11 +45,3 @@ install-vendor:
 
 update-vendor:
 	docker exec -it fastrackOctobreBack_php composer update
-
-## Generate the SSH keys JWT
-#############################
-
-gen-key:
-	docker exec -it fastrackOctobreBack_php sh -c 'mkdir -p config/jwt'
-	docker exec -it fastrackOctobreBack_php sh -c 'openssl genpkey -pass pass:${JWT_PASSPHRASE} -out ${JWT_SECRET_KEY} -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096'
- 	docker exec -it fastrackOctobreBack_php sh -c 'openssl pkey -passin pass:${JWT_PASSPHRASE} -in ${JWT_SECRET_KEY} -out ${JWT_PUBLIC_KEY} -pubout'
