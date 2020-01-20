@@ -19,8 +19,7 @@ down:
 	docker-compose down --rmi all -v --remove-orphans
 
 lint:
-	php-cs-fixer fix src/
-	php-cs-fixer fix tests/
+	vendor/bin/phpcs src
 
 test:
 	docker exec -it fastrackOctobreBack_php sh -c "APP_ENV=test php bin/console doctrine:database:drop --force --if-exists"

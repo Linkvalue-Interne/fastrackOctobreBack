@@ -12,24 +12,7 @@ class PartnerControllerTest extends AppTestCase
 
     protected function setUp(): void
     {
-        $client = static::createClient();
-        $client->request(
-            'POST',
-            '/api/login',
-            [],
-            [],
-            ['CONTENT_TYPE' => 'application/json'],
-            json_encode([
-                'username' => 'tester@link-value.fr',
-                'password' => 'password',
-            ])
-        );
-
-        $data = json_decode($client->getResponse()->getContent(), true);
-        $client = static::createClient();
-        $client->setServerParameter('HTTP_Authorization', sprintf('Bearer %s', $data['token']));
-
-        $this->client = $client;
+        $this->client = $this->createClient();
     }
 
     public function testList()
