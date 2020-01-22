@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Component\handler\CreatePartnerHandler;
+use App\Component\handler\DeleteFavoriteHandler;
 use App\Component\handler\DeletePartnerHandler;
 use App\Component\handler\ListPartnerHandler;
 use App\Component\handler\OnePartnerHandler;
 use App\Component\handler\UpdatePartnerHandler;
+use App\CustomException\CountFavoriteSkillException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -15,6 +17,7 @@ class PartnerController
     /**
      * @param ListPartnerHandler $listHandler
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function list(ListPartnerHandler $listHandler, Request $request): JsonResponse
@@ -25,6 +28,7 @@ class PartnerController
     /**
      * @param OnePartnerHandler $onePartnerHandler
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function show(OnePartnerHandler $onePartnerHandler, Request $request): JsonResponse
@@ -35,6 +39,7 @@ class PartnerController
     /**
      * @param DeletePartnerHandler $deleteHandler
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function delete(DeletePartnerHandler $deleteHandler, Request $request): JsonResponse
@@ -45,6 +50,7 @@ class PartnerController
     /**
      * @param CreatePartnerHandler $createHandler
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function create(CreatePartnerHandler $createHandler, Request $request): JsonResponse
@@ -55,6 +61,9 @@ class PartnerController
     /**
      * @param UpdatePartnerHandler $updatePartnerHandler
      * @param Request $request
+     *
+     * @throws CountFavoriteSkillException
+     *
      * @return JsonResponse
      */
     public function update(UpdatePartnerHandler $updatePartnerHandler, Request $request): JsonResponse

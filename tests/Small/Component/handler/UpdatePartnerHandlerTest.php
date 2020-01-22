@@ -10,14 +10,14 @@ use App\Component\viewer\PartnerViewer;
 use App\Component\writer\Writer;
 use App\Entity\Partner;
 use App\Entity\PartnerSkill;
+use App\Entity\Skill;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 class UpdatePartnerHandlerTest extends KernelTestCase
 {
     private $request;
-
-    private $partner;
 
     private $partnerBuilder;
 
@@ -38,9 +38,7 @@ class UpdatePartnerHandlerTest extends KernelTestCase
         $this->partnerViewer = $this->createMock(PartnerViewer::class);
         $this->writer = $this->createMock(Writer::class);
         $this->partnerSkillTrans = $this->createMock(PartnerSkillTransformer::class);
-
         $this->request = $this->createMock(Request::class);
-        $this->partner = $this->createMock(Partner::class);
         $this->partnerSkill = $this->createMock(PartnerSkill::class);
     }
 
@@ -52,17 +50,14 @@ class UpdatePartnerHandlerTest extends KernelTestCase
         return new UpdatePartnerHandler(
             $this->partnerBuilder,
             $this->partnerViewer,
-            $this->writer,
-            $this->partnerSkillTrans
+            $this->partnerSkillTrans,
+            $this->writer
         );
     }
 
-    /**
-     * @return array
-     */
-    public function getData(): array
+    public function testHandlerUpdateBasicField()
     {
-        return [
+        $expect = [
             "id" => 2,
             "firstName" => "Jimmy",
             "lastName" => "neutron",
@@ -73,67 +68,176 @@ class UpdatePartnerHandlerTest extends KernelTestCase
             "customer" => "client",
             "project" => "project",
             "avatar" => "cat4.jpg",
-            "skills" => [
-                [
-                    "id" => 5,
-                    "level" => 28,
-                ],
-                [
-                    "id" => 6,
-                    "level" => 22,
-                ],
-                [
-                    "id" => 7,
-                    "level" => 0,
-                ],
-                [
-                    "id" => 8,
-                    "level" => 12,
-                ],
-                [
-                    "id" => 22,
-                    "level" => 12,
-                ],
-                [
-                    "id" => 1,
-                    "level" => 99,
-                ],
-            ]
+            "favorites" => [],
+            "skills" => [],
         ];
-    }
 
-    public function testHandlerUpdate()
-    {
-        $arrayPartnerSkill = [$this->partnerSkill];
+        $partner = $this->createConfiguredMock(Partner::class, ['getFavorites' => new ArrayCollection()]);
 
         $this->request
             ->expects($this->once())
             ->method('getContent')
-            ->willReturn(json_encode($this->getData(), true));
+            ->willReturn(json_encode($expect, true));
 
         $this->partnerBuilder
             ->expects($this->once())
             ->method('buildWithForm')
-            ->willReturn($this->partner);
+            ->willReturn($partner);
+
+        $this->partnerSkillTrans
+            ->expects($this->once())
+            ->method('partnerSkillTransformer')
+            ->willReturn([]);
+
+        $this->partnerSkillTrans
+            ->expects($this->atLeast(2))
+            ->method('favoriteSkillTransformer')
+            ->willReturn([]);
 
         $this->writer
             ->expects($this->once())
             ->method('savePartner')
-            ->willReturn($this->partner);
-
-        $this->partnerSkillTrans
-            ->expects($this->once())
-            ->method('transformer')
-            ->willReturn($arrayPartnerSkill);
+            ->willReturn($partner);
 
         $this->partnerViewer
             ->expects($this->once())
             ->method('formatShow')
-            ->willReturn($this->getData());
+            ->willReturn($expect);
 
         $actual = $this->init()->handle($this->request);
 
-        $this->assertSame($actual, $this->getData());
+        $this->assertSame($actual, $expect);
+    }
+
+    public function testUpdateHandlerSkill()
+    {
+        $expect = [
+            "id" => 2,
+            "firstName" => "Jimmy",
+            "lastName" => "neutron",
+            "job" => "Physician",
+            "email" => "jimmy.hendrix@link-vaue.fr",
+            "phoneNumber" => "01 02 03 04 05",
+            "experience" => 40,
+            "customer" => "client",
+            "project" => "project",
+            "avatar" => "cat4.jpg",
+            "favorites" => [],
+            "skills" => [
+                [
+                    "id" => 5,
+                    "level" =>  30,
+                ],
+            ],
+        ];
+
+        $partnerSkill = $this->createMock(PartnerSkill::class);
+
+        $partner = $this->createConfiguredMock(Partner::class, ['getFavorites' => new ArrayCollection()]);
+
+        $this->request
+            ->expects($this->once())
+            ->method('getContent')
+            ->willReturn(json_encode($expect, true));
+
+        $this->partnerBuilder
+            ->expects($this->once())
+            ->method('buildWithForm')
+            ->willReturn($partner);
+
+        $this->partnerSkillTrans
+            ->expects($this->once())
+            ->method('partnerSkillTransformer')
+            ->with($expect)
+            ->willReturn([$partnerSkill]);
+
+        $this->partnerSkillTrans
+            ->expects($this->atLeast(2))
+            ->method('favoriteSkillTransformer')
+            ->willReturn([]);
+
+        $this->writer
+            ->expects($this->once())
+            ->method('savePartner')
+            ->willReturn($partner);
+
+        $this->partnerViewer
+            ->expects($this->once())
+            ->method('formatShow')
+            ->willReturn($expect);
+
+        $actual = $this->init()->handle($this->request);
+
+        $this->assertSame($actual, $expect);
+    }
+
+    public function testUpdateHandlerDeleteFavorite()
+    {
+        self::markTestSkipped();
+        $expect = [
+            "id" => 2,
+            "firstName" => "Jimmy",
+            "lastName" => "neutron",
+            "job" => "Physician",
+            "email" => "jimmy.hendrix@link-vaue.fr",
+            "phoneNumber" => "01 02 03 04 05",
+            "experience" => 40,
+            "customer" => "client",
+            "project" => "project",
+            "avatar" => "cat4.jpg",
+            "favorites" => [],
+            "skills" => [],
+        ];
+
+        $skill = $this->createMock(Skill::class);
+
+        $arrayCollection = $this->createTestProxy(
+            ArrayCollection::class,
+            [$skill]
+        );
+
+        $partner = $this->createConfiguredMock(
+            Partner::class,
+            ['getFavorites' => $arrayCollection]
+        );
+
+        $this->request
+            ->expects($this->once())
+            ->method('getContent')
+            ->willReturn(json_encode($expect, true));
+
+        $this->partnerBuilder
+            ->expects($this->once())
+            ->method('buildWithForm')
+            ->willReturn($partner);
+
+        $this->partnerSkillTrans
+            ->expects($this->once())
+            ->method('partnerSkillTransformer')
+            ->with($expect)
+            ->willReturn([]);
+
+        $this->partnerSkillTrans
+            ->expects($this->atLeast(2))
+            ->method('favoriteSkillTransformer')
+            ->willReturn([]);
+
+        $partner
+            ->
+
+        $this->writer
+            ->expects($this->once())
+            ->method('savePartner')
+            ->willReturn($partner);
+
+        $this->partnerViewer
+            ->expects($this->once())
+            ->method('formatShow')
+            ->willReturn($expect);
+
+        $actual = $this->init()->handle($this->request);
+
+        $this->assertSame($actual, $expect);
     }
 
     public function testFormatDataTrait()
@@ -147,6 +251,7 @@ class UpdatePartnerHandlerTest extends KernelTestCase
             "experience" => 40,
             "customer" => "client",
             "project" => "project",
+            "avatar" => "cat4.jpg",
         ];
 
         $authorizedKey = [
@@ -158,9 +263,10 @@ class UpdatePartnerHandlerTest extends KernelTestCase
             'experience',
             'customer',
             'project',
+            'avatar',
         ];
 
-        $actual = $this->init()->formatData($this->getData(), $authorizedKey);
+        $actual = $this->init()->formatData($expect, $authorizedKey);
 
         $this->assertSame($expect, $actual);
     }
