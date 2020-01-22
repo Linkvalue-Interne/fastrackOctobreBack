@@ -20,3 +20,7 @@ infra/.mysql/
 /.phpcs-cache
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
+
+## config/jwt/key
+
+config/jwt/

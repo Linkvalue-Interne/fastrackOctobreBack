@@ -3,6 +3,7 @@
 
 namespace App\EventListener;
 
+use App\CustomException\CountFavoriteSkillException;
 use App\CustomException\InvalidArgumentException;
 use App\CustomException\ValidatorException;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -44,6 +45,13 @@ class ExceptionListener
                     'status' => Response::HTTP_BAD_REQUEST,
                     'message' => $exception->getMessage(),
                     ]
+                ;
+                break;
+            case $exception instanceof CountFavoriteSkillException:
+                $errors = [
+                    'status' => Response::HTTP_BAD_REQUEST,
+                    'message' => $exception->getMessage(),
+                ]
                 ;
                 break;
             default:

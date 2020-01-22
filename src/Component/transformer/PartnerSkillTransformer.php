@@ -5,6 +5,7 @@ namespace App\Component\transformer;
 
 use App\Component\builder\SkillBuilder;
 use App\Component\retrieveAll\PartnerSkillRetriever;
+use App\Component\retrieveAll\SkillRetriever;
 
 class PartnerSkillTransformer
 {
@@ -14,13 +15,31 @@ class PartnerSkillTransformer
     /** @var PartnerSkillRetriever  */
     private $partnerSkillRetriever;
 
-    public function __construct(SkillBuilder $skillBuilder, PartnerSkillRetriever $partnerSkillRetriever)
-    {
+    /** @var SkillRetriever  */
+    private $skillRetriever;
+
+    /**
+     * PartnerSkillTransformer constructor.
+     * @param SkillBuilder $skillBuilder
+     * @param PartnerSkillRetriever $partnerSkillRetriever
+     * @param SkillRetriever $skillRetriever
+     */
+    public function __construct(
+        SkillBuilder $skillBuilder,
+        PartnerSkillRetriever $partnerSkillRetriever,
+        SkillRetriever $skillRetriever
+    ) {
         $this->skillBuilder = $skillBuilder;
         $this->partnerSkillRetriever = $partnerSkillRetriever;
+        $this->skillRetriever = $skillRetriever;
     }
 
-    public function transformer(?array $data): array
+    /**
+     * @param array|null $data
+     *
+     * @return array
+     */
+    public function partnerSkillTransformer(?array $data): array
     {
         $result = [];
 
@@ -40,6 +59,24 @@ class PartnerSkillTransformer
             if ($partnerSkill->getLevel() !== $item['level']) {
                 $result [] = $partnerSkill->setLevel($item['level']);
             }
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param array|null $data
+     *
+     * @return array
+     */
+    public function favoriteSkillTransformer(?array $data): array
+    {
+        $result = [];
+
+        foreach ($data as $item) {
+            $skill = $this->skillRetriever->getOne($item['id']);
+
+            $result[] = $skill;
         }
 
         return $result;
