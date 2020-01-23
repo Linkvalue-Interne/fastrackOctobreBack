@@ -6,8 +6,10 @@ namespace App\Tests\Small\Component\writer;
 use App\Component\writer\Writer;
 use App\Entity\Partner;
 use App\Entity\PartnerSkill;
+use App\Entity\User;
 use App\Repository\PartnerRepository;
 use App\Repository\PartnerSkillRepository;
+use App\Repository\UserRepository;
 use PHPUnit\Framework\TestCase;
 
 class WriterTest extends TestCase
@@ -16,16 +18,19 @@ class WriterTest extends TestCase
 
     private $partnerSkillRepo;
 
+    private $userRepo;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->partnerRepo = $this->createMock(PartnerRepository::class);
         $this->partnerSkillRepo = $this->createMock(PartnerSkillRepository::class);
+        $this->userRepo = $this->createMock(UserRepository::class);
     }
 
     public function init()
     {
-        return new Writer($this->partnerRepo, $this->partnerSkillRepo);
+        return new Writer($this->partnerRepo, $this->partnerSkillRepo, $this->userRepo);
     }
 
     public function testSavePartnerReturnPartnerEntity()
@@ -56,5 +61,20 @@ class WriterTest extends TestCase
         $actual = $this->init()->savePartnerSkill($partnerSkill);
 
         $this->assertSame($partnerSkill, $actual);
+    }
+
+    public function testSaveUserReturnUserEntity()
+    {
+        $user = $this->createMock(User::class);
+
+        $this->userRepo
+            ->expects($this->once())
+            ->method('save')
+            ->with($user)
+            ->willReturn($user);
+
+        $actual = $this->init()->saveUser($user);
+
+        $this->assertSame($user, $actual);
     }
 }

@@ -3,14 +3,14 @@ App\Entity\User:
     username: belinda
     email: seauve.belinda@link-value.fr
     password: \$2y\$13\$Es02/UzHvWEr8zfkyvsmI.R1LXyUKaQnd2ZfWjOaMePJQZzayIdVG
-    roles: ROLE_ADMIN
+    roles: ROLE_USER
   user_2:
     username: morgan
     email: hulot.morgan@link-value.fr
     password: \$2y\$13\$Es02/UzHvWEr8zfkyvsmI.R1LXyUKaQnd2ZfWjOaMePJQZzayIdVG
-    roles: ROLE_ADMIN
+    roles: ROLE_USER
   user_test:
     username: tester
     email: tester@link-value.fr
     password: \$2y\$13\$Es02/UzHvWEr8zfkyvsmI.R1LXyUKaQnd2ZfWjOaMePJQZzayIdVG
-    roles: ROLE_ADMIN
+    roles: ROLE_USER

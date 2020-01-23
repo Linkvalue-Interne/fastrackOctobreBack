@@ -4,13 +4,13 @@
 namespace App\Tests\Medium\Repository;
 
 use App\Entity\Category;
-use App\Entity\Skill;
 use App\Repository\CategoryRepository;
+use App\Tests\Medium\IntegrationTraitTest;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class CategoryRepositoryTest extends KernelTestCase
 {
-    use RepositoryTraitTest;
+    use IntegrationTraitTest;
 
     public function testSaveCategoryWithoutParentId()
     {

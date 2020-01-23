@@ -4,12 +4,13 @@
 namespace App\Tests\Small\Entity;
 
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 trait GetterTraitTest
 {
     private $object;
 
-    /** @var \Symfony\Component\PropertyAccess\PropertyAccessor  */
+    /** @var PropertyAccessor  */
     private $propertyAccessor;
 
     public function setUp(): void

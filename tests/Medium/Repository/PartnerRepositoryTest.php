@@ -5,11 +5,12 @@ namespace App\Tests\Medium\Repository;
 
 use App\Entity\Partner;
 use App\Repository\PartnerRepository;
+use App\Tests\Medium\IntegrationTraitTest;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class PartnerRepositoryTest extends KernelTestCase
 {
-    use RepositoryTraitTest;
+    use IntegrationTraitTest;
 
     public function testRepositoryTrait()
     {

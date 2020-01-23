@@ -20,6 +20,11 @@ class User implements UserInterface, EntityInterface
     /** @var array  */
     private $roles = [];
 
+    public function __construct()
+    {
+        $this->roles[] = 'ROLE_USER';
+    }
+
     /**
      * @return string|null
      */

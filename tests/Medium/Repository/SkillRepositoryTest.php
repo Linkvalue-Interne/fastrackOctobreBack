@@ -5,11 +5,12 @@ namespace App\Tests\Medium\Repository;
 
 use App\Entity\Skill;
 use App\Repository\SkillRepository;
+use App\Tests\Medium\IntegrationTraitTest;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class SkillRepositoryTest extends KernelTestCase
 {
-    use RepositoryTraitTest;
+    use IntegrationTraitTest;
 
     public function testSaveSkill()
     {

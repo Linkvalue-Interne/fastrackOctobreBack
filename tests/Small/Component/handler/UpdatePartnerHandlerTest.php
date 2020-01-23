@@ -171,74 +171,74 @@ class UpdatePartnerHandlerTest extends KernelTestCase
         $this->assertSame($actual, $expect);
     }
 
-    public function testUpdateHandlerDeleteFavorite()
-    {
-        self::markTestSkipped();
-        $expect = [
-            "id" => 2,
-            "firstName" => "Jimmy",
-            "lastName" => "neutron",
-            "job" => "Physician",
-            "email" => "jimmy.hendrix@link-vaue.fr",
-            "phoneNumber" => "01 02 03 04 05",
-            "experience" => 40,
-            "customer" => "client",
-            "project" => "project",
-            "avatar" => "cat4.jpg",
-            "favorites" => [],
-            "skills" => [],
-        ];
-
-        $skill = $this->createMock(Skill::class);
-
-        $arrayCollection = $this->createTestProxy(
-            ArrayCollection::class,
-            [$skill]
-        );
-
-        $partner = $this->createConfiguredMock(
-            Partner::class,
-            ['getFavorites' => $arrayCollection]
-        );
-
-        $this->request
-            ->expects($this->once())
-            ->method('getContent')
-            ->willReturn(json_encode($expect, true));
-
-        $this->partnerBuilder
-            ->expects($this->once())
-            ->method('buildWithForm')
-            ->willReturn($partner);
-
-        $this->partnerSkillTrans
-            ->expects($this->once())
-            ->method('partnerSkillTransformer')
-            ->with($expect)
-            ->willReturn([]);
-
-        $this->partnerSkillTrans
-            ->expects($this->atLeast(2))
-            ->method('favoriteSkillTransformer')
-            ->willReturn([]);
-
-        $partner
-            ->
-
-        $this->writer
-            ->expects($this->once())
-            ->method('savePartner')
-            ->willReturn($partner);
-
-        $this->partnerViewer
-            ->expects($this->once())
-            ->method('formatShow')
-            ->willReturn($expect);
-
-        $actual = $this->init()->handle($this->request);
-
-        $this->assertSame($actual, $expect);
-    }
+//    public function testUpdateHandlerDeleteFavorite()
+//    {
+//        self::markTestSkipped();
+//        $expect = [
+//            "id" => 2,
+//            "firstName" => "Jimmy",
+//            "lastName" => "neutron",
+//            "job" => "Physician",
+//            "email" => "jimmy.hendrix@link-vaue.fr",
+//            "phoneNumber" => "01 02 03 04 05",
+//            "experience" => 40,
+//            "customer" => "client",
+//            "project" => "project",
+//            "avatar" => "cat4.jpg",
+//            "favorites" => [],
+//            "skills" => [],
+//        ];
+//
+//        $skill = $this->createMock(Skill::class);
+//
+//        $arrayCollection = $this->createTestProxy(
+//            ArrayCollection::class,
+//            [$skill]
+//        );
+//
+//        $partner = $this->createConfiguredMock(
+//            Partner::class,
+//            ['getFavorites' => $arrayCollection]
+//        );
+//
+//        $this->request
+//            ->expects($this->once())
+//            ->method('getContent')
+//            ->willReturn(json_encode($expect, true));
+//
+//        $this->partnerBuilder
+//            ->expects($this->once())
+//            ->method('buildWithForm')
+//            ->willReturn($partner);
+//
+//        $this->partnerSkillTrans
+//            ->expects($this->once())
+//            ->method('partnerSkillTransformer')
+//            ->with($expect)
+//            ->willReturn([]);
+//
+//        $this->partnerSkillTrans
+//            ->expects($this->atLeast(2))
+//            ->method('favoriteSkillTransformer')
+//            ->willReturn([]);
+//
+//        $partner
+//            ->
+//
+//        $this->writer
+//            ->expects($this->once())
+//            ->method('savePartner')
+//            ->willReturn($partner);
+//
+//        $this->partnerViewer
+//            ->expects($this->once())
+//            ->method('formatShow')
+//            ->willReturn($expect);
+//
+//        $actual = $this->init()->handle($this->request);
+//
+//        $this->assertSame($actual, $expect);
+//    }
 
     public function testFormatDataTrait()
     {
