@@ -21,6 +21,6 @@ infra/.mysql/
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
 
-## config/jwt/key
-
-config/jwt/
+###> lexik/jwt-authentication-bundle ###
+config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

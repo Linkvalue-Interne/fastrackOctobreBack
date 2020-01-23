@@ -12,7 +12,24 @@ class PartnerControllerTest extends AppTestCase
 
     protected function setUp(): void
     {
-        $this->client = $this->createClient();
+        $client = static::createClient();
+        $client->request(
+            'POST',
+            '/api/login',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode([
+                'username' => 'tester@link-value.fr',
+                'password' => 'password',
+            ])
+        );
+
+        $data = json_decode($client->getResponse()->getContent(), true);
+        $client = static::createClient();
+        $client->setServerParameter('HTTP_Authorization', sprintf('Bearer %s', $data['token']));
+
+        $this->client = $client;
     }
 
     public function testList()
@@ -23,29 +40,29 @@ class PartnerControllerTest extends AppTestCase
         $this->assertJson($this->client->getResponse()->getContent());
 
         $dataToCompare = [
-                'id' => 4,
-                'firstName' => 'Bruce',
-                'lastName' => 'Wayne',
-                'job' => 'Milliardaire',
-                'avatar' => 'cat4.jpg',
-                'favorites' => [
-                    [
-                        'id' => 1,
-                        'name' => 'PHP',
-                        'icon' => 'php.jpg',
-                    ],
-                    [
-                        'id' => 2,
-                        'name' => 'Symfony',
-                        'icon' => 'symfony.jpg',
-                    ],
-                    [
-                        'id' => 3,
-                        'name' => 'Laravel',
-                        'icon' => 'laravel.jpg',
-                    ]
+            'id' => 4,
+            'firstName' => 'Bruce',
+            'lastName' => 'Wayne',
+            'job' => 'Milliardaire',
+            'avatar' => 'cat4.jpg',
+            'favorites' => [
+                [
+                    'id' => 1,
+                    'name' => 'PHP',
+                    'icon' => 'php.jpg',
                 ],
-            ]
+                [
+                    'id' => 2,
+                    'name' => 'Symfony',
+                    'icon' => 'symfony.jpg',
+                ],
+                [
+                    'id' => 3,
+                    'name' => 'Laravel',
+                    'icon' => 'laravel.jpg',
+                ]
+            ],
+        ]
         ;
 
         $this->assertGreaterThanOrEqual(1, count(json_decode($this->client->getResponse()->getContent())));
