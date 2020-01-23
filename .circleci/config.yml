@@ -94,6 +94,9 @@ jobs:
       - run:
           name: Copy default env file to .env
           command: cp .env.dist .env
+      - run:
+          name: generate ssh key jwt
+          command: sh gen-key.sh
       - deploy:
           name: Deploy to Heroku
           command: dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY --skip-cleanup=true
