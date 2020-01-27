@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Tests\Medium\Repository;
+namespace App\Tests\Medium;
 
-trait RepositoryTraitTest
+trait IntegrationTraitTest
 {
     protected static $kernel;
 

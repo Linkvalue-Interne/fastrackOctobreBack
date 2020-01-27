@@ -7,11 +7,12 @@ use App\Entity\PartnerSkill;
 use App\Repository\PartnerRepository;
 use App\Repository\PartnerSkillRepository;
 use App\Repository\SkillRepository;
+use App\Tests\Medium\IntegrationTraitTest;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class PartnerSkillRepositoryTest extends KernelTestCase
 {
-    use RepositoryTraitTest;
+    use IntegrationTraitTest;
 
     public function init()
     {
