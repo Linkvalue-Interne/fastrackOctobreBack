@@ -10,6 +10,8 @@ use App\Entity\User;
 use App\Repository\PartnerRepository;
 use App\Repository\PartnerSkillRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 
 class WriterTest extends TestCase
@@ -20,17 +22,20 @@ class WriterTest extends TestCase
 
     private $userRepo;
 
+    private $entityManager;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->partnerRepo = $this->createMock(PartnerRepository::class);
         $this->partnerSkillRepo = $this->createMock(PartnerSkillRepository::class);
         $this->userRepo = $this->createMock(UserRepository::class);
+        $this->entityManager = $this->createMock(EntityManagerInterface::class);
     }
 
     public function init()
     {
-        return new Writer($this->partnerRepo, $this->partnerSkillRepo, $this->userRepo);
+        return new Writer($this->partnerRepo, $this->partnerSkillRepo, $this->userRepo, $this->entityManager);
     }
 
     public function testSavePartnerReturnPartnerEntity()

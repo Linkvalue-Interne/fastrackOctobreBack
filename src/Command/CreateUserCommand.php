@@ -8,11 +8,12 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CreateUserCommand extends Command
 {
-    protected static $defaultName = 'app:create-user';
+    protected static $defaultName = 'app:user:create';
 
     /** @var UserBuilder */
     private $userBuilder;
@@ -93,6 +94,7 @@ class CreateUserCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $io = new SymfonyStyle($input, $output);
         if ($input->getArgument('username') && $input->getArgument('email') && $input->getArgument('password')) {
             $data = [
                 'username' => $input->getArgument('username'),
@@ -113,7 +115,8 @@ class CreateUserCommand extends Command
                     '<fg=blue>User Creator</>',
                     '=============',
                 ]);
-                $output->writeln('<fg=green>' . $user->getUsername() . ' successfully generated!</>');
+
+                $io->success(ucfirst($user->getUsername()) . ' successfully generated!');
             } catch (\Exception $exception) {
                 $output->writeln([
                     '<fg=blue>User Creator</>',
