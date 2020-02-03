@@ -1,14 +1,6 @@
 api_login_check:
   path: /api/login
 
-api_list_partner:
-  path: /api/partner/{filter}
-  controller: App\Controller\PartnerController::list
-  methods: GET
-  defaults:
-    filter: null
-  requirements:
-    filter: 'asc|desc'
 
 api_show_partner:
   path: /api/partner/{id}
@@ -16,6 +8,16 @@ api_show_partner:
   methods: GET
   requirements:
     id: '\d+'
+
+api_list_partner:
+  path: /api/partner/{options}/{order}
+  controller: App\Controller\PartnerController::list
+  methods: GET
+  defaults:
+    order: 'asc'
+    options: null
+  requirements:
+    order: 'asc|desc|null'
 
 api_delete_partner:
   path: /api/partner/{id}

@@ -32,7 +32,7 @@ class PartnerControllerTest extends AppTestCase
         $this->client = $client;
     }
 
-    public function testList()
+    public function testListWithoutParameters()
     {
         $this->client->request('GET', '/api/partner');
 
@@ -40,10 +40,10 @@ class PartnerControllerTest extends AppTestCase
         $this->assertJson($this->client->getResponse()->getContent());
 
         $dataToCompare = [
-            'id' => 4,
-            'firstName' => 'Bruce',
-            'lastName' => 'Wayne',
-            'job' => 'Milliardaire',
+            'id' => 1,
+            'firstName' => 'Charles',
+            'lastName' => 'Xavier',
+            'job' => 'Professeur',
             'avatar' => 'cat4.jpg',
             'favorites' => [
                 [
