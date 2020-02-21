@@ -83,7 +83,7 @@ class PartnerRetrieverTest extends TestCase
         $queryBuilder
             ->expects($this->once())
             ->method('orderBy')
-            ->with('p.id', 'ASC')
+            ->with('p.lastName', 'ASC')
             ->willReturn($queryBuilder);
 
         $queryBuilder
