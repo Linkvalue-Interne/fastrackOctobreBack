@@ -26,7 +26,7 @@ class PartnerRetriever
 
         if ('desc' == $order || 'asc' == $order) {
             $query
-                ->orderBy('p.id', strtoupper($order));
+                ->orderBy('p.lastName', strtoupper($order));
         }
 
         if ($search === 'null') {
